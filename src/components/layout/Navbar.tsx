@@ -9,10 +9,10 @@ import Logo from "@/components/ui/Logo";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
   { name: "Menu", href: "/menu" },
   { name: "Gallery", href: "/gallery" },
   { name: "Reservations", href: "/reservations" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
 
