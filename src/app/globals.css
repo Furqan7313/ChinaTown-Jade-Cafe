@@ -9,6 +9,23 @@
   
   --font-heading: var(--font-playfair);
   --font-body: var(--font-inter);
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes reverse-spin-slow {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  --animate-spin-slow: spin-slow 12s linear infinite;
+  --animate-reverse-spin-slow: reverse-spin-slow 15s linear infinite;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
 }
 
 :root {

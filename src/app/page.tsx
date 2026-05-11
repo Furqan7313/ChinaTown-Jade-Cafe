@@ -116,115 +116,118 @@ export default function Home() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-black/40 to-luxury-black"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(13,13,13,0.8)_100%)]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/90 via-luxury-black/50 to-luxury-black"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(13,13,13,0.9)_100%)]"></div>
         </motion.div>
 
-        {/* Floating Light Leaks */}
+        {/* Radial Background Glows */}
         <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
           <motion.div 
             animate={{ 
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-              opacity: [0.1, 0.3, 0.1]
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-1/4 -left-1/4 w-full h-full bg-crimson/10 blur-[150px] rounded-full"
-          />
-          <motion.div 
-            animate={{ 
-              x: [0, -80, 0],
-              y: [0, -100, 0],
+              scale: [1, 1.2, 1],
               opacity: [0.1, 0.2, 0.1]
             }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-gold/5 blur-[150px] rounded-full"
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-crimson/20 blur-[180px] rounded-full"
           />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 blur-[150px] rounded-full" />
         </div>
 
-        {/* Floating Particles */}
-        <div className="absolute inset-0 pointer-events-none z-10">
-          {isMounted && [...Array(30)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-gold/20 rounded-full"
-              initial={{ 
-                x: Math.random() * 100 + "%", 
-                y: Math.random() * 100 + "%",
-                opacity: Math.random() 
-              }}
-              animate={{ 
-                y: [null, "-120%"],
-                opacity: [0, 0.4, 0]
-              }}
-              transition={{ 
-                duration: Math.random() * 15 + 15, 
-                repeat: Infinity, 
-                ease: "linear",
-                delay: Math.random() * 10
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="container relative z-20 px-6 lg:px-12 text-center">
-          <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { 
-                opacity: 1,
-                transition: { staggerChildren: 0.2, delayChildren: 0.5 }
-              }
-            }}
-          >
-            <motion.span 
-              variants={{
-                hidden: { opacity: 0, y: 20, letterSpacing: "0.2em" },
-                visible: { opacity: 1, y: 0, letterSpacing: "0.5em" }
-              }}
-              className="inline-block text-gold text-[10px] font-bold uppercase mb-8 tracking-[0.5em]"
-            >
-              Exquisite Dining Since 2009
-            </motion.span>
+        <div className="container relative z-20 px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
-            <motion.h1 
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="font-heading text-6xl md:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter"
-            >
-              Experience <span className="text-gradient-crimson italic font-light block md:inline">Premium</span> <br />
-              <span className="text-whitesmoke">Chinese Dining</span>
-            </motion.h1>
-            
-            <motion.p 
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="text-lg md:text-xl text-whitesmoke/60 mb-14 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
-            >
-              Luxury ambiance, authentic flavors, and unforgettable experiences <br className="hidden md:block" /> in the heart of Multan.
-            </motion.p>
-
+            {/* Content Side */}
             <motion.div 
+              initial="hidden"
+              animate="visible"
               variants={{
-                hidden: { opacity: 0, scale: 0.9 },
-                visible: { opacity: 1, scale: 1 }
+                hidden: { opacity: 0, x: -50 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0,
+                  transition: { staggerChildren: 0.2, delayChildren: 0.5 }
+                }
               }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-8"
+              className="text-left"
             >
-              <PremiumButton onClick={() => window.location.href='/menu'} className="w-full sm:w-auto">
-                Explore Menu <ArrowRight size={18} />
-              </PremiumButton>
-              <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="w-full sm:w-auto">
-                Reserve Table
-              </PremiumButton>
+              <motion.span 
+                variants={{
+                  hidden: { opacity: 0, y: 20, letterSpacing: "0.2em" },
+                  visible: { opacity: 1, y: 0, letterSpacing: "0.5em" }
+                }}
+                className="inline-block text-gold text-[10px] font-bold uppercase mb-8 tracking-[0.5em] border-l-2 border-gold pl-4"
+              >
+                Exquisite Dining Since 2009
+              </motion.span>
+              
+              <motion.h1 
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter"
+              >
+                The Art of <br />
+                <span className="text-gradient-gold italic font-playfair font-light">Fine Dining</span>
+              </motion.h1>
+              
+              <motion.p 
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                className="text-lg md:text-xl text-whitesmoke/60 mb-14 max-w-xl font-light leading-relaxed tracking-wide"
+              >
+                Experience the height of luxury at Chinatown & Jade Café. We blend authentic Asian bold flavors with the sophisticated elegance of a modern culinary landmark.
+              </motion.p>
+
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, scale: 0.9 },
+                  visible: { opacity: 1, scale: 1 }
+                }}
+                className="flex flex-col sm:flex-row items-center gap-8"
+              >
+                <PremiumButton onClick={() => window.location.href='/menu'} className="w-full sm:w-auto">
+                  Explore Menu <ArrowRight size={18} />
+                </PremiumButton>
+                <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="w-full sm:w-auto">
+                  Reserve Table
+                </PremiumButton>
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* Circular Image Mask (Like The Dome) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="hidden lg:block relative"
+            >
+              <div className="relative w-[500px] h-[500px] mx-auto">
+                <div className="absolute inset-0 border-2 border-gold/20 rounded-full animate-spin-slow"></div>
+                <div className="absolute inset-4 border border-gold/10 rounded-full animate-reverse-spin-slow"></div>
+                <div className="absolute inset-12 overflow-hidden rounded-full shadow-2xl shadow-gold/10">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1563379091339-03b11adbbff3?q=80&w=800&auto=format&fit=crop" 
+                    alt="Signature Dish" 
+                    fill 
+                    className="object-cover hover:scale-110 transition-transform duration-1000"
+                  />
+                </div>
+                {/* Floating Elements */}
+                <motion.div 
+                  animate={{ y: [0, -20, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-0 right-0 bg-luxury-black/80 backdrop-blur-md border border-gold/20 p-6 rounded-2xl shadow-2xl"
+                >
+                  <Star className="text-gold mb-2" size={20} />
+                  <p className="text-[10px] uppercase tracking-widest font-bold">Chef's Special</p>
+                </motion.div>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
 
         {/* Scroll Indicator */}
@@ -232,22 +235,16 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="absolute bottom-10 left-10 flex flex-col items-center gap-4"
         >
-          <motion.span 
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-[10px] uppercase tracking-[0.4em] text-gold/50"
-          >
-            Scroll
-          </motion.span>
-          <div className="w-[1px] h-16 bg-gradient-to-b from-gold/50 via-gold/10 to-transparent relative overflow-hidden">
+          <div className="w-[1px] h-20 bg-gradient-to-b from-gold to-transparent relative overflow-hidden">
             <motion.div 
               animate={{ y: ["-100%", "100%"] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-0 left-0 w-full h-1/2 bg-gold"
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 left-0 w-full h-1/2 bg-white"
             />
           </div>
+          <span className="text-[8px] uppercase tracking-[0.5em] text-gold vertical-text">Scroll</span>
         </motion.div>
       </section>
 
@@ -346,58 +343,83 @@ export default function Home() {
       </section>
 
       {/* SIGNATURE DISHES - MENU SECTION */}
-      <section className="py-32 lg:py-48 px-6 lg:px-12 bg-[#0a0a0a]">
-        <div className="container mx-auto">
+      <section className="py-32 lg:py-48 px-6 lg:px-12 bg-[#0a0a0a] relative overflow-hidden">
+        {/* Decorative Background Element */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-crimson/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        
+        <div className="container mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 1 }}
             >
-              <span className="text-crimson font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Chef's Choice</span>
-              <h2 className="font-heading text-5xl md:text-7xl font-bold">Signature <span className="text-gold italic font-light">Creations</span></h2>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="h-[1px] w-12 bg-gold"></div>
+                <span className="text-gold font-bold uppercase tracking-[0.4em] text-[10px]">Chef's Choice</span>
+              </div>
+              <h2 className="font-heading text-5xl md:text-8xl font-bold">Signature <br /><span className="text-gradient-gold italic font-playfair font-light">Creations</span></h2>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 1 }}
             >
-              <Link href="/menu" className="bg-whitesmoke text-luxury-black px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-gold transition-colors">
+              <PremiumButton onClick={() => window.location.href='/menu'} variant="outline">
                 View Full Menu
-              </Link>
+              </PremiumButton>
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {signatureDishes.map((dish, i) => (
               <motion.div 
                 key={dish.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative"
+                transition={{ delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="group"
               >
-                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-charcoal border border-gold/5 group-hover:border-gold/20 transition-all duration-500">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-charcoal border border-gold/10 group-hover:border-gold/30 transition-all duration-700 shadow-2xl">
                   <Image 
                     src={dish.image} 
                     alt={dish.name} 
                     fill 
-                    className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                    className="object-cover group-hover:scale-110 transition-transform duration-1000 opacity-70 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-luxury-black/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700"></div>
                   
-                  <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="text-gold text-[10px] font-bold uppercase tracking-widest mb-2 block">{dish.category}</span>
-                    <h3 className="text-2xl font-bold mb-2">{dish.name}</h3>
-                    <p className="text-sm text-whitesmoke/60 mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2">
+                  {/* Premium Badge */}
+                  <div className="absolute top-6 right-6 w-12 h-12 rounded-full glass flex items-center justify-center border border-gold/20 scale-0 group-hover:scale-100 transition-transform duration-500 delay-100">
+                    <Star className="text-gold" size={16} />
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 w-full p-10 translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                    <div className="overflow-hidden">
+                      <motion.span className="text-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-3 block transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        {dish.category}
+                      </motion.span>
+                    </div>
+                    <h3 className="text-3xl font-heading font-bold mb-4 leading-tight">{dish.name}</h3>
+                    <div className="h-[1px] w-0 group-hover:w-full bg-gold/30 transition-all duration-700 mb-6"></div>
+                    <p className="text-sm text-whitesmoke/50 mb-8 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 line-clamp-2 font-light tracking-wide">
                       {dish.desc}
                     </p>
                     <div className="flex justify-between items-center">
-                      <span className="text-xl font-bold text-whitesmoke">{dish.price}</span>
-                      <button className="w-10 h-10 rounded-full bg-crimson flex items-center justify-center text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500 shadow-lg shadow-crimson/30">
-                        <ArrowRight size={20} />
-                      </button>
+                      <div className="flex flex-col">
+                        <span className="text-[8px] uppercase tracking-widest text-whitesmoke/40">Starting from</span>
+                        <span className="text-2xl font-bold text-whitesmoke font-heading">{dish.price}</span>
+                      </div>
+                      <motion.button 
+                        whileHover={{ scale: 1.1, rotate: 45 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-14 h-14 rounded-full bg-crimson flex items-center justify-center text-white transition-all duration-500 shadow-[0_0_20px_rgba(179,0,27,0.4)] hover:shadow-[0_0_30px_rgba(179,0,27,0.6)]"
+                      >
+                        <ArrowRight size={24} />
+                      </motion.button>
                     </div>
                   </div>
                 </div>

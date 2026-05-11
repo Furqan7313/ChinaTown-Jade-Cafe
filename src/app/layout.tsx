@@ -30,6 +30,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased min-h-screen flex flex-col bg-whitesmoke dark:bg-luxury-black text-luxury-black dark:text-whitesmoke selection:bg-crimson selection:text-white" suppressHydrationWarning>
         <SmoothScroll>
+          <div className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-overlay"></div>
           <Navbar />
           <main className="flex-grow">
             {children}
