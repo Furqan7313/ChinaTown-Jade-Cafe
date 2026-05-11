@@ -131,116 +131,70 @@ export default function Home() {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-crimson/20 blur-[180px] rounded-full"
           />
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 blur-[150px] rounded-full" />
-        </div>
-
-        <div className="container relative z-20 px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Content Side */}
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0, x: -50 },
-                visible: { 
-                  opacity: 1, 
-                  x: 0,
-                  transition: { staggerChildren: 0.2, delayChildren: 0.5 }
-                }
-              }}
-              className="text-left"
-            >
-              <motion.span 
-                variants={{
-                  hidden: { opacity: 0, y: 20, letterSpacing: "0.2em" },
-                  visible: { opacity: 1, y: 0, letterSpacing: "0.5em" }
-                }}
-                className="inline-block text-gold text-[10px] font-bold uppercase mb-8 tracking-[0.5em] border-l-2 border-gold pl-4"
-              >
-                Exquisite Dining Since 2009
-              </motion.span>
-              
-              <motion.h1 
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-                className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter"
-              >
-                Experience <br />
-                <span className="text-gradient-crimson italic font-playfair font-light">Premium</span> <br />
-                <span className="text-whitesmoke">Chinese Dining</span>
-              </motion.h1>
-              
-              <motion.p 
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-                className="text-lg md:text-xl text-whitesmoke/60 mb-14 max-w-xl font-light leading-relaxed tracking-wide"
-              >
-                Luxury ambiance, authentic flavors, and unforgettable experiences in the heart of Multan.
-              </motion.p>
-
-              <motion.div 
-                variants={{
-                  hidden: { opacity: 0, scale: 0.9 },
-                  visible: { opacity: 1, scale: 1 }
-                }}
-                className="flex flex-col sm:flex-row items-center gap-8"
-              >
-                <PremiumButton onClick={() => window.location.href='/menu'} className="w-full sm:w-auto">
-                  Explore Menu <ArrowRight size={18} />
-                </PremiumButton>
-                <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="w-full sm:w-auto">
-                  Reserve Table
-                </PremiumButton>
-              </motion.div>
-            </motion.div>
-
-            {/* Circular Image Mask (Eye-catching Animation) */}
+        </div>        <div className="container relative z-20 px-6 lg:px-12 text-center">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1,
+                transition: { staggerChildren: 0.2, delayChildren: 0.5 }
+              }
+            }}
+            className="max-w-5xl mx-auto"
+          >
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="hidden lg:block relative"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="flex items-center justify-center gap-4 mb-8"
             >
-              <motion.div 
-                style={{
-                  rotateX: useTransform(scrollY, [0, 500], [0, 15]),
-                  rotateY: useTransform(scrollY, [0, 500], [0, -15]),
-                }}
-                className="relative w-[500px] h-[500px] mx-auto perspective-[1000px]"
-              >
-                <div className="absolute inset-0 border-2 border-gold/20 rounded-full animate-spin-slow"></div>
-                <div className="absolute inset-4 border border-gold/10 rounded-full animate-reverse-spin-slow"></div>
-                <motion.div 
-                  whileHover={{ scale: 1.05, rotate: 2 }}
-                  className="absolute inset-12 overflow-hidden rounded-full shadow-[0_0_50px_rgba(212,175,55,0.2)] group"
-                >
-                  <Image 
-                    src="https://images.unsplash.com/photo-1563379091339-03b11adbbff3?q=80&w=800&auto=format&fit=crop" 
-                    alt="Signature Dish" 
-                    fill 
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 to-transparent mix-blend-overlay"></div>
-                </motion.div>
-                
-                {/* Floating Elements with Parallax */}
-                <motion.div 
-                  animate={{ y: [0, -20, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-10 -right-10 bg-luxury-black/90 backdrop-blur-xl border border-gold/20 p-6 rounded-2xl shadow-2xl z-30"
-                >
-                  <Star className="text-gold mb-2" size={20} />
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-gold">Chef's Special</p>
-                  <p className="text-[8px] text-whitesmoke/40">Hand-crafted Perfection</p>
-                </motion.div>
-              </motion.div>
+              <div className="h-[1px] w-8 md:w-12 bg-gold"></div>
+              <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-[0.6em]">
+                Exquisite Dining Since 2009
+              </span>
+              <div className="h-[1px] w-8 md:w-12 bg-gold"></div>
             </motion.div>
+            
+            <motion.h1 
+              variants={{
+                hidden: { opacity: 0, scale: 0.9, y: 30 },
+                visible: { opacity: 1, scale: 1, y: 0 }
+              }}
+              className="font-heading text-6xl md:text-8xl lg:text-[10rem] font-bold mb-10 leading-[0.8] tracking-tighter"
+            >
+              Experience <br />
+              <span className="text-gradient-gold italic font-playfair font-light">Premium</span> <br />
+              <span className="text-whitesmoke">Chinese Dining</span>
+            </motion.h1>
+            
+            <motion.p 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="text-lg md:text-2xl text-whitesmoke/50 mb-16 max-w-2xl mx-auto font-light leading-relaxed tracking-widest uppercase text-[10px] md:text-sm"
+            >
+              Luxury ambiance • Authentic flavors • Unforgettable moments
+            </motion.p>
 
-          </div>
+            <motion.div 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-8"
+            >
+              <PremiumButton onClick={() => window.location.href='/menu'} className="min-w-[200px]">
+                Explore Menu <ArrowRight size={18} />
+              </PremiumButton>
+              <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="min-w-[200px]">
+                Reserve Table
+              </PremiumButton>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Scroll Indicator */}
