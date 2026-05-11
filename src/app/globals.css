@@ -20,12 +20,27 @@
     to { transform: rotate(0deg); }
   }
 
+
   --animate-spin-slow: spin-slow 12s linear infinite;
   --animate-reverse-spin-slow: reverse-spin-slow 15s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  --animate-float: float 6s ease-in-out infinite;
 }
 
 .vertical-text {
   writing-mode: vertical-rl;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 :root {

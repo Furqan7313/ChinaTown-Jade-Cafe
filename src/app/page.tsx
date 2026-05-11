@@ -88,8 +88,21 @@ export default function Home() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    if (isMounted) {
+      gsap.from(".page-reveal", {
+        opacity: 0,
+        y: 20,
+        duration: 1.2,
+        ease: "power4.out"
+      });
+    }
+  }, [isMounted]);
+
+  if (!isMounted) return <div className="min-h-screen bg-luxury-black" />;
+
   return (
-    <div className="relative w-full overflow-hidden bg-luxury-black text-whitesmoke">
+    <div className="relative w-full overflow-hidden bg-luxury-black text-whitesmoke page-reveal">
       
       {/* MOUSE FOLLOW LIGHT EFFECT */}
       <div 
@@ -98,120 +111,117 @@ export default function Home() {
           background: `radial-gradient(600px at ${mousePos.x}px ${mousePos.y}px, rgba(179, 0, 27, 0.05), transparent 80%)`
         }}
       />
-
       {/* HERO SECTION */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Cinematic Background */}
         <motion.div 
           style={{ y: y1 }} 
-          initial={{ scale: 1.2, opacity: 0 }}
+          initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1920&auto=format&fit=crop" 
-            alt="Chinatown & Jade Café Ambiance" 
+            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop" 
+            alt="Chinatown & Jade Café Luxury Dining" 
             fill 
+            sizes="100vw"
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/90 via-luxury-black/50 to-luxury-black"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(13,13,13,0.9)_100%)]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-black/40 to-luxury-black"></div>
+          <div className="absolute inset-0 bg-luxury-black/20"></div>
         </motion.div>
 
-        {/* Radial Background Glows */}
-        <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-crimson/20 blur-[180px] rounded-full"
+        {/* Subtle Atmospheric Effects */}
+        <div className="absolute inset-0 pointer-events-none z-10">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05)_0%,transparent_70%)]" />
+        </div>
+
+        {/* Floating Dish (Interactive Visual) */}
+        <motion.div 
+          style={{ 
+            x: useTransform(scrollY, [0, 500], [0, 100]),
+            y: useTransform(scrollY, [0, 500], [0, -100]),
+            rotate: useTransform(scrollY, [0, 500], [0, 15]),
+          }}
+          className="absolute right-[-10%] top-[10%] w-[500px] h-[500px] pointer-events-none z-10 opacity-30 mix-blend-screen hidden lg:block"
+        >
+          <Image 
+            src="/images/menu/dynamite_shrimps.png" 
+            alt="Floating Special" 
+            fill 
+            className="object-contain animate-float"
           />
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 blur-[150px] rounded-full" />
-        </div>        <div className="container relative z-20 px-6 lg:px-12 text-center">
+        </motion.div>
+
+        <div className="container relative z-20 px-6 text-center">
           <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { 
-                opacity: 1,
-                transition: { staggerChildren: 0.2, delayChildren: 0.5 }
-              }
-            }}
-            className="max-w-5xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="max-w-6xl mx-auto"
           >
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="flex items-center justify-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8 }}
+              className="mb-8"
             >
-              <div className="h-[1px] w-8 md:w-12 bg-gold"></div>
-              <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-[0.6em]">
-                Exquisite Dining Since 2009
-              </span>
-              <div className="h-[1px] w-8 md:w-12 bg-gold"></div>
+              <div className="flex items-center justify-center gap-4">
+                <div className="h-[1px] w-8 bg-gold/50" />
+                <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-[0.8em]">
+                  The Culinary Landmark
+                </span>
+                <div className="h-[1px] w-8 bg-gold/50" />
+              </div>
             </motion.div>
             
             <motion.h1 
-              variants={{
-                hidden: { opacity: 0, scale: 0.9, y: 30 },
-                visible: { opacity: 1, scale: 1, y: 0 }
-              }}
-              className="font-heading text-6xl md:text-8xl lg:text-[10rem] font-bold mb-10 leading-[0.8] tracking-tighter"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="font-heading text-6xl md:text-8xl lg:text-[11rem] font-bold mb-10 leading-[0.8] tracking-tighter"
             >
-              Experience <br />
-              <span className="text-gradient-gold italic font-playfair font-light">Premium</span> <br />
-              <span className="text-whitesmoke">Chinese Dining</span>
+              CHINATOWN <br />
+              <span className="text-gradient-gold italic font-playfair font-light">& JADE CAFÉ</span>
             </motion.h1>
             
             <motion.p 
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="text-lg md:text-2xl text-whitesmoke/50 mb-16 max-w-2xl mx-auto font-light leading-relaxed tracking-widest uppercase text-[10px] md:text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, delay: 0.8 }}
+              className="text-[10px] md:text-xs text-whitesmoke/40 mb-16 max-w-xl mx-auto font-bold uppercase tracking-[0.6em] leading-loose"
             >
-              Luxury ambiance • Authentic flavors • Unforgettable moments
+              Experience the fusion of authentic Asian heritage <br /> and modern luxury in the heart of Multan.
             </motion.p>
 
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-8"
-            >
-              <PremiumButton onClick={() => window.location.href='/menu'} className="min-w-[200px]">
-                Explore Menu <ArrowRight size={18} />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+              <PremiumButton onClick={() => window.location.href='/menu'} className="min-w-[220px]">
+                Explore Menu
               </PremiumButton>
-              <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="min-w-[200px]">
+              <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="min-w-[220px]">
                 Reserve Table
               </PremiumButton>
-            </motion.div>
+            </div>
           </motion.div>
-        </div>
+        </div></div>
 
-        {/* Scroll Indicator */}
+        {/* Refined Scroll Indicator */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 left-10 flex flex-col items-center gap-4"
+          transition={{ delay: 2 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
         >
-          <div className="w-[1px] h-20 bg-gradient-to-b from-gold to-transparent relative overflow-hidden">
+          <span className="text-[8px] uppercase tracking-[0.4em] text-gold/50 font-bold">Discovery</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-gold/50 to-transparent relative overflow-hidden">
             <motion.div 
               animate={{ y: ["-100%", "100%"] }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 left-0 w-full h-1/2 bg-white"
+              className="absolute top-0 left-0 w-full h-full bg-gold"
             />
           </div>
-          <span className="text-[8px] uppercase tracking-[0.5em] text-gold vertical-text">Scroll</span>
         </motion.div>
       </section>
 
@@ -264,9 +274,10 @@ export default function Home() {
               <div className="absolute -inset-4 border border-gold/10 rounded-[2rem] -rotate-3"></div>
               <div className="absolute inset-0 overflow-hidden rounded-[2rem] shadow-2xl shadow-gold/5">
                 <Image 
-                  src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop" 
+                  src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop" 
                   alt="Restaurant Interior" 
                   fill 
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover hover:scale-105 transition-transform duration-1000"
                 />
               </div>
@@ -355,6 +366,7 @@ export default function Home() {
                     src={dish.image} 
                     alt={dish.name} 
                     fill 
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-1000 opacity-70 group-hover:opacity-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-luxury-black/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700"></div>
@@ -403,6 +415,7 @@ export default function Home() {
             src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1920&auto=format&fit=crop" 
             alt="Luxury Table" 
             fill 
+            sizes="100vw"
             className="object-cover opacity-20 grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-luxury-black via-luxury-black/90 to-transparent"></div>
@@ -496,7 +509,7 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="text-center mb-24">
              <span className="text-gold font-bold uppercase tracking-[0.4em] text-xs mb-4 block">Kind Words</span>
-             <h2 className="font-heading text-5xl md:text-7xl font-bold">The Guest <span className="text-gradient-crimson italic">Experience</span></h2>
+             <h2 className="font-heading text-5xl md:text-7xl font-bold">The Guest <span className="text-gradient-gold italic">Experience</span></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
