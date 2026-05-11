@@ -102,35 +102,63 @@ export default function Home() {
       {/* HERO SECTION */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Cinematic Background */}
-        <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
+        <motion.div 
+          style={{ y: y1 }} 
+          initial={{ scale: 1.2, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 z-0"
+        >
           <Image 
             src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1920&auto=format&fit=crop" 
             alt="Chinatown & Jade Café Ambiance" 
             fill 
-            className="object-cover scale-110"
+            className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/70 via-luxury-black/40 to-luxury-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-black/40 to-luxury-black"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(13,13,13,0.8)_100%)]"></div>
         </motion.div>
 
-        {/* Floating Particles (CSS only for performance) */}
-        <div className="absolute inset-0 pointer-events-none">
-          {isMounted && [...Array(20)].map((_, i) => (
+        {/* Floating Light Leaks */}
+        <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+          <motion.div 
+            animate={{ 
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+              opacity: [0.1, 0.3, 0.1]
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-1/4 -left-1/4 w-full h-full bg-crimson/10 blur-[150px] rounded-full"
+          />
+          <motion.div 
+            animate={{ 
+              x: [0, -80, 0],
+              y: [0, -100, 0],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-gold/5 blur-[150px] rounded-full"
+          />
+        </div>
+
+        {/* Floating Particles */}
+        <div className="absolute inset-0 pointer-events-none z-10">
+          {isMounted && [...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-gold/30 rounded-full"
+              className="absolute w-1 h-1 bg-gold/20 rounded-full"
               initial={{ 
                 x: Math.random() * 100 + "%", 
                 y: Math.random() * 100 + "%",
                 opacity: Math.random() 
               }}
               animate={{ 
-                y: [null, "-100%"],
-                opacity: [0, 0.5, 0]
+                y: [null, "-120%"],
+                opacity: [0, 0.4, 0]
               }}
               transition={{ 
-                duration: Math.random() * 10 + 10, 
+                duration: Math.random() * 15 + 15, 
                 repeat: Infinity, 
                 ease: "linear",
                 delay: Math.random() * 10
@@ -139,50 +167,87 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="container relative z-10 px-6 lg:px-12 text-center">
+        <div className="container relative z-20 px-6 lg:px-12 text-center">
           <motion.div 
-            style={{ opacity }}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1,
+                transition: { staggerChildren: 0.2, delayChildren: 0.5 }
+              }
+            }}
           >
             <motion.span 
-              initial={{ opacity: 0, letterSpacing: "0.2em" }}
-              animate={{ opacity: 1, letterSpacing: "0.5em" }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="inline-block text-gold text-xs font-bold uppercase mb-6 tracking-[0.5em]"
+              variants={{
+                hidden: { opacity: 0, y: 20, letterSpacing: "0.2em" },
+                visible: { opacity: 1, y: 0, letterSpacing: "0.5em" }
+              }}
+              className="inline-block text-gold text-[10px] font-bold uppercase mb-8 tracking-[0.5em]"
             >
               Exquisite Dining Since 2009
             </motion.span>
             
-            <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.9] tracking-tighter">
-              Experience <span className="text-gradient-crimson">Premium</span> <br />
-              <span className="italic font-light">Chinese Dining</span>
-            </h1>
+            <motion.h1 
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="font-heading text-6xl md:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter"
+            >
+              Experience <span className="text-gradient-crimson italic font-light block md:inline">Premium</span> <br />
+              <span className="text-whitesmoke">Chinese Dining</span>
+            </motion.h1>
             
-            <p className="text-lg md:text-xl text-whitesmoke/70 mb-12 max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
-              Luxury ambiance, authentic flavors, and unforgettable experiences in the heart of Multan.
-            </p>
+            <motion.p 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="text-lg md:text-xl text-whitesmoke/60 mb-14 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
+            >
+              Luxury ambiance, authentic flavors, and unforgettable experiences <br className="hidden md:block" /> in the heart of Multan.
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <PremiumButton onClick={() => window.location.href='/menu'}>
+            <motion.div 
+              variants={{
+                hidden: { opacity: 0, scale: 0.9 },
+                visible: { opacity: 1, scale: 1 }
+              }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-8"
+            >
+              <PremiumButton onClick={() => window.location.href='/menu'} className="w-full sm:w-auto">
                 Explore Menu <ArrowRight size={18} />
               </PremiumButton>
-              <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'}>
+              <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="w-full sm:w-auto">
                 Reserve Table
               </PremiumButton>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
         {/* Scroll Indicator */}
         <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-gold/50">Scroll</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-gold/50 to-transparent"></div>
+          <motion.span 
+            animate={{ opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="text-[10px] uppercase tracking-[0.4em] text-gold/50"
+          >
+            Scroll
+          </motion.span>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-gold/50 via-gold/10 to-transparent relative overflow-hidden">
+            <motion.div 
+              animate={{ y: ["-100%", "100%"] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-0 left-0 w-full h-1/2 bg-gold"
+            />
+          </div>
         </motion.div>
       </section>
 
