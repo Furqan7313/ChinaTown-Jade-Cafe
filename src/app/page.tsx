@@ -205,7 +205,7 @@ export default function Home() {
               </PremiumButton>
             </div>
           </motion.div>
-        </div></div>
+        </div>
 
         {/* Refined Scroll Indicator */}
         <motion.div 
