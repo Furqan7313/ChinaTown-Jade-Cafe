@@ -167,8 +167,9 @@ export default function Home() {
                 }}
                 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter"
               >
-                The Art of <br />
-                <span className="text-gradient-gold italic font-playfair font-light">Fine Dining</span>
+                Experience <br />
+                <span className="text-gradient-crimson italic font-playfair font-light">Premium</span> <br />
+                <span className="text-whitesmoke">Chinese Dining</span>
               </motion.h1>
               
               <motion.p 
@@ -178,7 +179,7 @@ export default function Home() {
                 }}
                 className="text-lg md:text-xl text-whitesmoke/60 mb-14 max-w-xl font-light leading-relaxed tracking-wide"
               >
-                Experience the height of luxury at Chinatown & Jade Café. We blend authentic Asian bold flavors with the sophisticated elegance of a modern culinary landmark.
+                Luxury ambiance, authentic flavors, and unforgettable experiences in the heart of Multan.
               </motion.p>
 
               <motion.div 
@@ -197,34 +198,46 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Circular Image Mask (Like The Dome) */}
+            {/* Circular Image Mask (Eye-catching Animation) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="hidden lg:block relative"
             >
-              <div className="relative w-[500px] h-[500px] mx-auto">
+              <motion.div 
+                style={{
+                  rotateX: useTransform(scrollY, [0, 500], [0, 15]),
+                  rotateY: useTransform(scrollY, [0, 500], [0, -15]),
+                }}
+                className="relative w-[500px] h-[500px] mx-auto perspective-[1000px]"
+              >
                 <div className="absolute inset-0 border-2 border-gold/20 rounded-full animate-spin-slow"></div>
                 <div className="absolute inset-4 border border-gold/10 rounded-full animate-reverse-spin-slow"></div>
-                <div className="absolute inset-12 overflow-hidden rounded-full shadow-2xl shadow-gold/10">
+                <motion.div 
+                  whileHover={{ scale: 1.05, rotate: 2 }}
+                  className="absolute inset-12 overflow-hidden rounded-full shadow-[0_0_50px_rgba(212,175,55,0.2)] group"
+                >
                   <Image 
                     src="https://images.unsplash.com/photo-1563379091339-03b11adbbff3?q=80&w=800&auto=format&fit=crop" 
                     alt="Signature Dish" 
                     fill 
-                    className="object-cover hover:scale-110 transition-transform duration-1000"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
-                </div>
-                {/* Floating Elements */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 to-transparent mix-blend-overlay"></div>
+                </motion.div>
+                
+                {/* Floating Elements with Parallax */}
                 <motion.div 
                   animate={{ y: [0, -20, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 right-0 bg-luxury-black/80 backdrop-blur-md border border-gold/20 p-6 rounded-2xl shadow-2xl"
+                  className="absolute -top-10 -right-10 bg-luxury-black/90 backdrop-blur-xl border border-gold/20 p-6 rounded-2xl shadow-2xl z-30"
                 >
                   <Star className="text-gold mb-2" size={20} />
-                  <p className="text-[10px] uppercase tracking-widest font-bold">Chef's Special</p>
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-gold">Chef's Special</p>
+                  <p className="text-[8px] text-whitesmoke/40">Hand-crafted Perfection</p>
                 </motion.div>
-              </div>
+              </motion.div>
             </motion.div>
 
           </div>
