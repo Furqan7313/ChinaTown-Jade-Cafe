@@ -68,7 +68,12 @@ const reviews = [
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [isMounted, setIsMounted] = useState(false);
   const heroRef = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -111,7 +116,7 @@ export default function Home() {
 
         {/* Floating Particles (CSS only for performance) */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+          {isMounted && [...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-gold/30 rounded-full"
