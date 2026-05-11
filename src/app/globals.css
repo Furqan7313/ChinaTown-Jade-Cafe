@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-luxury-black: #0D0D0D;
+  --color-crimson: #B3001B;
+  --color-gold: #D4AF37;
+  --color-whitesmoke: #F5F5F5;
+  --color-charcoal: #121212;
+  
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-inter);
+}
+
+:root {
+  --background: #F5F5F5;
+  --foreground: #0D0D0D;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0D0D0D;
+    --foreground: #F5F5F5;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(13, 13, 13, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* Custom Utilities for smooth animations */
+html {
+  scroll-behavior: smooth;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(to right, #D4AF37, #F5F5F5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-crimson {
+  background: linear-gradient(to right, #B3001B, #D4AF37);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
