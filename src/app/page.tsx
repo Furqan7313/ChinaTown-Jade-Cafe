@@ -77,6 +77,9 @@ export default function Home() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const dishX = useTransform(scrollY, [0, 500], [0, 100]);
+  const dishY = useTransform(scrollY, [0, 500], [0, -100]);
+  const dishRotate = useTransform(scrollY, [0, 500], [0, 15]);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -141,9 +144,9 @@ export default function Home() {
         {/* Floating Dish (Interactive Visual) */}
         <motion.div 
           style={{ 
-            x: useTransform(scrollY, [0, 500], [0, 100]),
-            y: useTransform(scrollY, [0, 500], [0, -100]),
-            rotate: useTransform(scrollY, [0, 500], [0, 15]),
+            x: dishX,
+            y: dishY,
+            rotate: dishRotate,
           }}
           className="absolute right-[-10%] top-[10%] w-[500px] h-[500px] pointer-events-none z-10 opacity-30 mix-blend-screen hidden lg:block"
         >
