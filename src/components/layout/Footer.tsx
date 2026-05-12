@@ -1,93 +1,107 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Instagram, Facebook, Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import Logo from "@/components/ui/Logo";
 
-const InstagramIcon = ({ size = 18 }: { size?: number }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-  </svg>
-);
-
-const FacebookIcon = ({ size = 18 }: { size?: number }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-  </svg>
-);
-
 export default function Footer() {
   return (
-    <footer className="py-24 border-t border-gold/5 bg-luxury-black relative overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+    <footer className="relative py-32 bg-luxury-black border-t border-gold/10 overflow-hidden">
+      <div className="cinematic-grain" />
+      
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        {/* Upper Column Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 mb-32">
           
-          <div className="space-y-8">
-            <Logo className="h-16 md:h-20 w-auto" />
-            <p className="text-sm text-whitesmoke/40 leading-relaxed">
-              Elevating the dining landscape of Multan with premium flavors and cinematic ambiance. Experience luxury in every bite.
+          {/* Brand Pillar */}
+          <div className="lg:col-span-4 space-y-12">
+            <Logo className="scale-110 origin-left" />
+            <p className="text-xl text-whitesmoke/40 font-light leading-relaxed max-w-sm italic">
+              "Redefining the dialogue between traditional Asian heritage and modern luxury hospitality."
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-whitesmoke/10 flex items-center justify-center hover:border-gold hover:text-gold transition-all">
-                <InstagramIcon size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-whitesmoke/10 flex items-center justify-center hover:border-gold hover:text-gold transition-all">
-                <FacebookIcon size={18} />
-              </a>
+            <div className="flex gap-8">
+              <motion.a whileHover={{ y: -5, color: "#D4AF37" }} href="#" className="text-whitesmoke/30 transition-colors">
+                <Instagram size={20} />
+              </motion.a>
+              <motion.a whileHover={{ y: -5, color: "#D4AF37" }} href="#" className="text-whitesmoke/30 transition-colors">
+                <Facebook size={20} />
+              </motion.a>
+              <motion.a whileHover={{ y: -5, color: "#D4AF37" }} href="#" className="text-whitesmoke/30 transition-colors">
+                <Mail size={20} />
+              </motion.a>
             </div>
           </div>
 
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.3em] font-bold mb-10 text-gold">Quick Links</h4>
-            <ul className="space-y-4 text-sm text-whitesmoke/60">
-              <li><Link href="/menu" className="hover:text-gold transition-colors">The Menu</Link></li>
-              <li><Link href="/about" className="hover:text-gold transition-colors">Our Story</Link></li>
-              <li><Link href="/reservations" className="hover:text-gold transition-colors">Book a Table</Link></li>
-              <li><Link href="/gallery" className="hover:text-gold transition-colors">Gallery</Link></li>
-            </ul>
-          </div>
+          {/* Navigation Pillar */}
+          <div className="lg:col-span-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-16">
+              <div className="space-y-10">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gold/60">Navigation</h4>
+                <ul className="space-y-6">
+                  {['The Menu', 'Our Story', 'Reservations', 'Gallery'].map((item) => (
+                    <li key={item}>
+                      <Link href={`/${item.toLowerCase().replace(' ', '-')}`} className="text-sm text-whitesmoke/60 hover:text-gold transition-all duration-500 font-medium">
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.3em] font-bold mb-10 text-gold">Opening Hours</h4>
-            <ul className="space-y-4 text-sm text-whitesmoke/60">
-              <li className="flex justify-between border-b border-whitesmoke/5 pb-2">
-                <span>Mon - Fri</span>
-                <span className="text-whitesmoke">12:00 PM - 11:00 PM</span>
-              </li>
-              <li className="flex justify-between border-b border-whitesmoke/5 pb-2">
-                <span>Sat - Sun</span>
-                <span className="text-whitesmoke">12:00 PM - 12:00 AM</span>
-              </li>
-              <li className="flex justify-between border-b border-whitesmoke/5 pb-2">
-                <span>Hi-Tea</span>
-                <span className="text-whitesmoke">04:00 PM - 07:00 PM</span>
-              </li>
-            </ul>
-          </div>
+              <div className="space-y-10">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gold/60">Contact</h4>
+                <ul className="space-y-6 text-sm text-whitesmoke/60">
+                  <li className="flex items-start gap-4">
+                    <MapPin size={14} className="mt-1 text-gold/40" />
+                    <span>Main Abdali Rd, Multan</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <Phone size={14} className="mt-1 text-gold/40" />
+                    <span>+92 (061) 4504100</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <Mail size={14} className="mt-1 text-gold/40" />
+                    <span>info@jadecafe.com</span>
+                  </li>
+                </ul>
+              </div>
 
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.3em] font-bold mb-10 text-gold">Newsletter</h4>
-            <p className="text-sm text-whitesmoke/40 mb-6">Join our elite circle for exclusive event invites.</p>
-            <div className="relative">
-              <input type="email" placeholder="Email Address" className="w-full bg-whitesmoke/5 border border-whitesmoke/10 rounded-full py-3 px-6 outline-none focus:border-gold transition-colors text-sm" />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gold text-luxury-black p-2 rounded-full hover:scale-110 transition-transform">
-                <ArrowRight size={16} />
-              </button>
+              <div className="space-y-10 col-span-2 md:col-span-1">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gold/60">Opening</h4>
+                <div className="space-y-6">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm text-whitesmoke">Mon - Thu</span>
+                    <span className="text-[10px] text-whitesmoke/40 tracking-widest">12:00 PM - 11:00 PM</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm text-whitesmoke">Fri - Sun</span>
+                    <span className="text-[10px] text-whitesmoke/40 tracking-widest">12:00 PM - 12:00 AM</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
 
-        <div className="pt-12 border-t border-whitesmoke/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-[10px] uppercase tracking-widest text-whitesmoke/30">
-            © 2026 ChinaTown & Jade Café Multan. All Rights Reserved.
-          </p>
-          <div className="flex gap-8 text-[10px] uppercase tracking-widest text-whitesmoke/30">
-            <a href="#" className="hover:text-whitesmoke">Privacy Policy</a>
-            <a href="#" className="hover:text-whitesmoke">Terms of Service</a>
+        {/* Huge Typographic Footer */}
+        <div className="border-t border-gold/5 pt-20">
+          <div className="flex flex-col lg:flex-row justify-between items-end gap-12">
+            <div className="overflow-hidden">
+              <h2 className="text-[12vw] lg:text-[8vw] font-bold font-heading leading-none tracking-tighter text-whitesmoke/5 uppercase">
+                Chinatown
+              </h2>
+            </div>
+            <div className="flex flex-col items-end gap-4">
+              <div className="flex gap-8 text-[9px] font-bold uppercase tracking-[0.5em] text-whitesmoke/20">
+                <Link href="#" className="hover:text-gold transition-colors">Privacy</Link>
+                <Link href="#" className="hover:text-gold transition-colors">Terms</Link>
+                <Link href="#" className="hover:text-gold transition-colors">Cookie Policy</Link>
+              </div>
+              <p className="text-[9px] font-bold uppercase tracking-[0.5em] text-whitesmoke/10">
+                © 2026 THE JADE GROUP — ALL RIGHTS RESERVED
+              </p>
+            </div>
           </div>
         </div>
       </div>

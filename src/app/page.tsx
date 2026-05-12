@@ -85,18 +85,50 @@ export default function Home() {
       
       {/* --- HERO SECTION: THE CULINARY MANIFESTO --- */}
       <section className="relative min-h-[110vh] flex items-center pt-20 overflow-hidden">
-        {/* Atmospheric Elements */}
+        {/* Monumental Background Text */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-luxury-black via-transparent to-luxury-black z-10" />
+          
+          {/* Monumental Background Text */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
+            <h2 className="text-[30vw] font-bold font-heading whitespace-nowrap tracking-tighter select-none">
+              TASTE HERITAGE
+            </h2>
+          </div>
+
           <motion.div 
             animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.3, 0.5, 0.3] 
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.4, 0.2] 
             }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 -left-1/4 w-[80%] h-[80%] bg-gold/5 blur-[180px] rounded-full" 
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,rgba(212,175,55,0.1),transparent_50%)]" 
           />
-          <div className="absolute bottom-1/4 -right-1/4 w-[60%] h-[60%] bg-crimson/5 blur-[150px] rounded-full" />
+        </div>
+
+        {/* Floating Circular Signature */}
+        <div className="absolute right-12 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 z-30">
+          <div className="w-px h-32 bg-gradient-to-b from-transparent via-gold/30 to-transparent" />
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="relative w-32 h-32 flex items-center justify-center"
+          >
+            <svg className="absolute w-full h-full" viewBox="0 0 100 100">
+              <defs>
+                <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
+              </defs>
+              <text className="text-[10px] font-bold fill-gold/40 uppercase tracking-[0.2em]">
+                <textPath xlinkHref="#circlePath">
+                  THE ORIGINAL CHINATOWN — AUTHENTIC TASTE — 
+                </textPath>
+              </text>
+            </svg>
+            <div className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center text-gold/60">
+              <Star size={14} fill="currentColor" />
+            </div>
+          </motion.div>
+          <div className="w-px h-32 bg-gradient-to-b from-transparent via-gold/30 to-transparent" />
         </div>
 
         <div className="container mx-auto px-6 relative z-20">
@@ -122,7 +154,7 @@ export default function Home() {
                   </span>
                 </motion.div>
                 
-                <h1 className="font-heading text-6xl md:text-8xl lg:text-[11rem] font-bold leading-[0.8] tracking-tighter mb-12">
+                <h1 className="font-heading text-6xl md:text-8xl lg:text-[11.5rem] font-bold leading-[0.85] tracking-tighter mb-12">
                   <span className="text-whitesmoke block overflow-hidden">
                     <motion.span 
                       initial={{ y: "110%" }}
@@ -138,12 +170,19 @@ export default function Home() {
                       initial={{ y: "110%" }}
                       animate={{ y: 0 }}
                       transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="block"
+                      className="block text-glow-gold"
                     >
                       & JADE CAFÉ
                     </motion.span>
                   </span>
                 </h1>
+
+                {/* Vertical Signature for Connoisseurs */}
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-32 hidden xl:block pointer-events-none">
+                  <p className="vertical-text text-[10px] font-bold tracking-[1em] text-gold/30 uppercase">
+                    ESTABLISHED 2009 — MULTAN
+                  </p>
+                </div>
 
                 <motion.p 
                   initial={{ opacity: 0 }}
@@ -185,14 +224,14 @@ export default function Home() {
             <div className="lg:col-span-5 xl:col-span-4 relative hidden lg:block">
               <motion.div 
                 style={{ y: y1 }}
-                className="relative z-10 aspect-[3/4] rounded-[3rem] overflow-hidden border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)]"
+                className="relative z-10 aspect-[3/4] rounded-[3rem] overflow-hidden border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] glass-dark"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-transparent z-10 opacity-60" />
                 <Image 
                   src="/images/hero/luxury_dish.png"
                   alt="Michelin Star Presentation"
                   fill
-                  className="object-cover scale-110"
+                  className="object-cover scale-110 group-hover:scale-125 transition-transform duration-[3s]"
                   priority
                 />
               </motion.div>

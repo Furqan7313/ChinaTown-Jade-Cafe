@@ -4,187 +4,191 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { Menu, X, Phone, Utensils, Star, ChevronRight } from "lucide-react";
 import Logo from "@/components/ui/Logo";
-import { ArrowRight, Menu, X } from "lucide-react";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Menu", href: "/menu" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Reservations", href: "/reservations" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "THE MENU", href: "/menu" },
+  { name: "OUR STORY", href: "/about" },
+  { name: "GALLERY", href: "/gallery" },
+  { name: "CONTACT", href: "/contact" },
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
+    const previous = scrollY.getPrevious() || 0;
     if (latest > previous && latest > 150) {
-      setIsVisible(false);
+      setVisible(false);
     } else {
-      setIsVisible(true);
+      setVisible(true);
     }
-    setIsScrolled(latest > 50);
+    setScrolled(latest > 50);
   });
 
   return (
-    <>
-      <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ 
-        y: isVisible ? 0 : -100,
-        opacity: isVisible ? 1 : 0,
-      }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-[60] transition-all duration-700 pointer-events-none",
-        isScrolled ? "pt-4" : "pt-8 md:pt-12"
-      )}
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: visible ? 0 : -100 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
+        scrolled ? "py-4" : "py-8"
+      }`}
     >
-      <div className="max-w-screen-2xl mx-auto flex justify-center w-full px-6">
-        <div className={cn(
-          "flex items-center justify-between w-full px-8 md:px-12 rounded-full transition-all duration-1000 pointer-events-auto border backdrop-blur-3xl",
-          isScrolled 
-            ? "bg-luxury-black/90 border-gold/30 shadow-[0_40px_120px_rgba(0,0,0,0.8)] py-3 md:py-4 scale-[0.98]" 
-            : "bg-transparent border-white/10 py-6 md:py-10 scale-100"
-        )}>
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className={`relative flex items-center justify-between rounded-full transition-all duration-700 ${
+          scrolled 
+            ? "glass-dark px-8 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-gold/20" 
+            : "bg-transparent px-4 py-2 border-transparent"
+        }`}>
           
-          {/* Pillar 1: Brand */}
-          <div className="flex-1 flex items-center justify-start">
-            <Link href="/" className="group">
-              <motion.div
-                animate={{ scale: isScrolled ? 0.9 : 1 }}
-                className="flex items-center"
-              >
-                <Logo className={cn("transition-all duration-1000", isScrolled ? "h-8 md:h-10" : "h-11 md:h-16")} />
-              </motion.div>
+          <div className="flex-1 flex items-center">
+            <Link href="/" className="group relative">
+              <div className="absolute -inset-8 bg-gold/20 blur-[40px] rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-50 group-hover:scale-110" />
+              <Logo className={`relative z-10 transition-all duration-700 ${scrolled ? "scale-90" : "scale-100"} group-hover:scale-105 group-hover:brightness-110`} />
             </Link>
           </div>
 
-          {/* Pillar 2: Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center justify-center gap-1 flex-[2]">
+          <nav className="hidden lg:flex items-center gap-14">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
+              <Link 
+                key={link.name} 
                 href={link.href}
-                className="relative px-5 py-2 text-[11px] font-bold tracking-[0.35em] uppercase transition-all group"
+                className="group relative"
               >
-                <span className={cn(
-                  "relative z-10 transition-colors duration-700",
+                <span className={`text-[9px] font-bold tracking-[0.5em] uppercase transition-all duration-500 ${
                   pathname === link.href ? "text-gold" : "text-whitesmoke/40 group-hover:text-whitesmoke"
-                )}>
+                }`}>
                   {link.name}
                 </span>
+                <motion.div 
+                  className="absolute -bottom-3 left-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent"
+                  initial={{ width: 0, opacity: 0 }}
+                  whileHover={{ width: "100%", opacity: 1 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                />
                 {pathname === link.href && (
                   <motion.div 
-                    layoutId="nav-active"
-                    className="absolute inset-0 bg-gold/[0.03] rounded-full -z-0"
-                    transition={{ type: "spring", duration: 0.8 }}
+                    layoutId="navUnderline"
+                    className="absolute -bottom-3 left-0 w-full h-[1.5px] bg-gold shadow-[0_0_10px_rgba(212,175,55,0.5)]"
                   />
                 )}
-                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent group-hover:w-1/2 transition-all duration-700 opacity-0 group-hover:opacity-100" />
               </Link>
             ))}
           </nav>
 
-          {/* Pillar 3: Actions */}
-          <div className="flex-1 flex items-center justify-end gap-8">
-            <Link
-              href="/reservations"
-              className="hidden lg:flex items-center gap-3 group relative"
-            >
-              <div className="absolute -inset-4 bg-gold/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full" />
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className={cn(
-                  "relative z-10 bg-gold text-luxury-black font-bold tracking-[0.25em] uppercase transition-all duration-700 flex items-center gap-3 shadow-2xl rounded-full",
-                  isScrolled ? "px-8 py-3.5 text-[9px]" : "px-10 py-4 text-[10px]"
-                )}
+          {/* Right: Action Pillar */}
+          <div className="flex-1 flex items-center justify-end gap-6">
+            <div className="hidden xl:flex flex-col items-end mr-4">
+              <span className="text-[8px] font-bold tracking-widest text-gold/60 uppercase">The Reserve</span>
+              <span className="text-[10px] font-bold text-whitesmoke tracking-wider">+92 (061) 4504100</span>
+            </div>
+
+            <Link href="/reservations" className="hidden sm:block">
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(212, 175, 55, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                className="relative bg-gold text-luxury-black px-8 py-3 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase transition-all overflow-hidden group"
               >
-                <span>Reserve A Table</span>
-                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-500" />
-              </motion.div>
+                <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 opacity-20" />
+                <span className="relative z-10">Secure a Table</span>
+              </motion.button>
             </Link>
 
-            <button
-              className="lg:hidden p-3 text-gold hover:bg-gold/10 rounded-full transition-colors border border-gold/20"
-              onClick={() => setIsMobileMenuOpen(true)}
+            {/* Mobile Toggle */}
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="lg:hidden p-3 text-gold hover:bg-gold/10 rounded-full transition-colors"
             >
               <Menu size={24} />
             </button>
           </div>
         </div>
       </div>
-      </motion.header>
 
-      {/* Full-Screen Mobile Menu */}
+      {/* ULTRA-LUXURY FULLSCREEN MENU */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-luxury-black flex flex-col p-8 md:p-12 overflow-hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 120 }}
+            className="fixed inset-0 z-[200] bg-luxury-black flex flex-col"
           >
-            <div className="flex justify-between items-center mb-20">
-              <Logo className="h-10" />
+            <div className="cinematic-grain" />
+            
+            {/* Overlay Header */}
+            <div className="flex items-center justify-between p-8 md:p-12">
+              <Logo />
               <button 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-3 text-gold bg-white/5 rounded-full border border-white/10"
+                onClick={() => setIsOpen(false)}
+                className="w-16 h-16 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all"
               >
-                <X size={28} />
+                <X size={32} />
               </button>
             </div>
 
-            <div className="flex flex-col gap-8 md:gap-10">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={cn(
-                      "text-5xl md:text-7xl font-heading font-medium tracking-tighter transition-all hover:italic hover:pl-4",
-                      pathname === link.href ? "text-gold italic pl-4" : "text-whitesmoke/20 hover:text-gold"
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+            {/* Links Pillar */}
+            <div className="flex-grow flex flex-col justify-center px-12 md:px-24">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <nav className="flex flex-col gap-8 md:gap-12">
+                  {navLinks.map((link, i) => (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 + 0.3 }}
+                    >
+                      <Link 
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="group flex items-end gap-6"
+                      >
+                        <span className="font-heading text-6xl md:text-8xl text-whitesmoke/20 group-hover:text-gold transition-colors duration-500 italic">0{i + 1}</span>
+                        <span className="font-heading text-5xl md:text-7xl font-bold text-whitesmoke group-hover:translate-x-4 transition-transform duration-500 uppercase tracking-tighter">
+                          {link.name.split(' ')[link.name.split(' ').length - 1]}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+
+                <div className="hidden lg:block space-y-12">
+                  <div className="aspect-[4/5] rounded-[3rem] overflow-hidden border border-gold/20 relative group">
+                    <img src="/images/hero/luxury_dish.png" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
+                    <div className="absolute inset-0 bg-luxury-black/40" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mt-auto"
-            >
-              <Link
-                href="/reservations"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-between bg-gold text-luxury-black p-8 rounded-2xl group"
-              >
-                <span className="text-2xl font-bold tracking-tighter uppercase">Reserve A Table</span>
-                <ArrowRight size={32} className="group-hover:translate-x-4 transition-transform" />
+            {/* Overlay Footer */}
+            <div className="p-12 md:p-24 border-t border-gold/10 flex flex-col md:flex-row justify-between items-center gap-8">
+              <div className="flex gap-12">
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] font-bold text-gold uppercase tracking-[0.3em]">Address</span>
+                  <p className="text-whitesmoke/40 text-sm">Main Abdali Rd, Multan</p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] font-bold text-gold uppercase tracking-[0.3em]">Follow</span>
+                  <p className="text-whitesmoke/40 text-sm">Instagram / Facebook</p>
+                </div>
+              </div>
+              <Link href="/reservations" onClick={() => setIsOpen(false)}>
+                <motion.button className="bg-gold text-luxury-black px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[0.3em]">
+                  Reserve Now
+                </motion.button>
               </Link>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </motion.header>
   );
 }
-
