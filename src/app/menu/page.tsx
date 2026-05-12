@@ -95,6 +95,7 @@ export default function MenuPage() {
                     src={item.image} 
                     alt={item.name} 
                     fill 
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute top-4 left-4 flex gap-2">

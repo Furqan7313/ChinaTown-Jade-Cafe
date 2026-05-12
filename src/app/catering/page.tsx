@@ -29,6 +29,7 @@ export default function CateringPage() {
             src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop" 
             alt="Event Catering" 
             fill 
+            sizes="100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent flex items-end p-8 md:p-12">

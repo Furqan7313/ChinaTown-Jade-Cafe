@@ -37,66 +37,67 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ 
-        y: isVisible ? 20 : -100,
+        y: isVisible ? 0 : -100,
         opacity: isVisible ? 1 : 0,
       }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 flex justify-center pointer-events-none"
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 flex justify-center pointer-events-none pt-6"
     >
       <div className={cn(
-        "flex items-center justify-between w-full max-w-7xl px-8 py-3 rounded-full transition-all duration-500 pointer-events-auto",
+        "flex items-center justify-between w-full max-w-7xl px-6 md:px-10 py-3 rounded-full transition-all duration-700 pointer-events-auto border backdrop-blur-md",
         isScrolled 
-          ? "glass shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-gold/20 py-2" 
-          : "bg-transparent border-transparent"
+          ? "bg-luxury-black/80 border-gold/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] py-2" 
+          : "bg-luxury-black/20 border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.1)] py-4 md:py-5"
       )}>
         {/* Logo */}
         <Link href="/" className="group relative z-50">
           <motion.div 
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.4 }}
             className="flex items-center"
           >
-            <Logo className={cn("transition-all duration-500", isScrolled ? "h-10" : "h-12 md:h-16")} />
+            <Logo className={cn("transition-all duration-700", isScrolled ? "h-10" : "h-12 md:h-16")} />
           </motion.div>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-2">
+        <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="relative px-5 py-2 text-[10px] font-bold tracking-[0.2em] uppercase transition-colors group"
+              className="relative px-6 py-2 text-[10px] font-bold tracking-[0.25em] uppercase transition-all group"
             >
               <span className={cn(
-                "relative z-10 transition-colors duration-300",
+                "relative z-10 transition-colors duration-500",
                 pathname === link.href ? "text-gold" : "text-whitesmoke/50 group-hover:text-whitesmoke"
               )}>
                 {link.name}
               </span>
               
-              {/* Active Dot */}
+              {/* Active Indicator */}
               {pathname === link.href && (
                 <motion.div 
-                  layoutId="active-dot"
-                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-gold rounded-full"
+                  layoutId="active-pill"
+                  className="absolute inset-0 bg-gold/5 rounded-full border border-gold/10 -z-0"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
               
               {/* Hover Glow */}
-              <motion.div 
-                className="absolute inset-0 bg-gold/5 blur-sm rounded-full -z-0 opacity-0 group-hover:opacity-100 transition-opacity"
-              />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold/50 group-hover:w-1/2 transition-all duration-500" />
             </Link>
           ))}
           
-          <div className="ml-4 h-6 w-[1px] bg-whitesmoke/10" />
+          <div className="ml-4 h-6 w-[1px] bg-white/10" />
           
           <Link
             href="/reservations"
-            className="ml-6 relative bg-crimson text-white px-8 py-2.5 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase overflow-hidden group shadow-lg shadow-crimson/20 transition-transform hover:scale-105 active:scale-95"
+            className="ml-6 relative overflow-hidden group rounded-full"
           >
-            <span className="relative z-10">Reserve</span>
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative bg-crimson text-white px-9 py-3 rounded-full text-[10px] font-bold tracking-[0.25em] uppercase transition-all duration-500 group-hover:bg-gold group-hover:text-luxury-black shadow-lg shadow-crimson/20 group-hover:shadow-gold/20">
+              <span className="relative z-10">Reserve</span>
+            </div>
           </Link>
         </nav>
 
@@ -105,18 +106,18 @@ export default function Navbar() {
           className="lg:hidden z-50 p-2 text-whitesmoke group"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <div className="relative w-6 h-5 flex flex-col justify-between">
+          <div className="relative w-6 h-5 flex flex-col justify-between items-end">
             <motion.span 
-              animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 9 : 0 }}
-              className="h-[1.5px] w-full bg-gold block origin-left" 
+              animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 9 : 0, width: isMobileMenuOpen ? "100%" : "100%" }}
+              className="h-[1.5px] w-full bg-gold block origin-left rounded-full" 
             />
             <motion.span 
-              animate={{ opacity: isMobileMenuOpen ? 0 : 1 }}
-              className="h-[1.5px] w-full bg-gold block" 
+              animate={{ opacity: isMobileMenuOpen ? 0 : 1, width: isMobileMenuOpen ? "0%" : "70%" }}
+              className="h-[1.5px] bg-gold block rounded-full" 
             />
             <motion.span 
-              animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? -9 : 0 }}
-              className="h-[1.5px] w-full bg-gold block origin-left" 
+              animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? -9 : 0, width: isMobileMenuOpen ? "100%" : "100%" }}
+              className="h-[1.5px] w-full bg-gold block origin-left rounded-full" 
             />
           </div>
         </button>

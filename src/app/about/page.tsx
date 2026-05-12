@@ -68,6 +68,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000&auto=format&fit=crop" 
               alt="Restaurant Ambiance" 
               fill 
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover hover:scale-110 transition-transform duration-1000"
             />
           </motion.div>
@@ -86,6 +87,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop" 
               alt="Chef Cooking" 
               fill 
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover hover:scale-110 transition-transform duration-1000"
             />
           </motion.div>

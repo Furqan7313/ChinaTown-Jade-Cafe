@@ -115,7 +115,7 @@ export default function Home() {
         }}
       />
       {/* HERO SECTION */}
-      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden py-32 md:py-40">
         {/* Cinematic Background */}
         <motion.div 
           style={{ y: y1 }} 
@@ -154,6 +154,7 @@ export default function Home() {
             src="/images/menu/dynamite_shrimps.png" 
             alt="Floating Special" 
             fill 
+            sizes="500px"
             className="object-contain animate-float"
           />
         </motion.div>
@@ -171,42 +172,49 @@ export default function Home() {
               transition={{ delay: 0.8 }}
               className="mb-8"
             >
-              <div className="flex items-center justify-center gap-4">
-                <div className="h-[1px] w-8 bg-gold/50" />
+              <div className="flex items-center justify-center gap-6">
+                <div className="h-[1px] w-12 bg-gold/50" />
                 <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-[0.8em]">
                   The Culinary Landmark
                 </span>
-                <div className="h-[1px] w-8 bg-gold/50" />
+                <div className="h-[1px] w-12 bg-gold/50" />
               </div>
             </motion.div>
             
-            <motion.h1 
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              className="font-heading text-6xl md:text-8xl lg:text-[11rem] font-bold mb-10 leading-[0.8] tracking-tighter"
-            >
-              CHINATOWN <br />
-              <span className="text-gradient-gold italic font-playfair font-light">& JADE CAFÉ</span>
-            </motion.h1>
+            <div className="overflow-hidden mb-8 md:mb-12">
+              <motion.h1 
+                initial={{ opacity: 0, y: 150 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                className="font-heading text-6xl md:text-8xl lg:text-[8rem] xl:text-[10rem] font-bold leading-[0.85] tracking-tighter"
+              >
+                CHINATOWN <br />
+                <span className="text-gradient-gold italic font-playfair font-light block mt-4">& JADE CAFÉ</span>
+              </motion.h1>
+            </div>
             
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 0.8 }}
-              className="text-[10px] md:text-xs text-whitesmoke/40 mb-16 max-w-xl mx-auto font-bold uppercase tracking-[0.6em] leading-loose"
+              transition={{ duration: 1.5, delay: 1.2 }}
+              className="text-[10px] md:text-xs text-whitesmoke/50 mb-12 md:mb-16 max-w-2xl mx-auto font-bold uppercase tracking-[0.6em] leading-loose"
             >
-              Experience the fusion of authentic Asian heritage <br /> and modern luxury in the heart of Multan.
+              Experience the fusion of authentic Asian heritage <br className="hidden md:block" /> and modern luxury in the heart of Multan.
             </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 1 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-8"
+            >
               <PremiumButton onClick={() => window.location.href='/menu'} className="min-w-[220px]">
                 Explore Menu
               </PremiumButton>
               <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="min-w-[220px]">
                 Reserve Table
               </PremiumButton>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
