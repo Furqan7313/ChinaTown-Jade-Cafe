@@ -158,28 +158,31 @@ export default function Home() {
                   </Link>
                 </div>
               </motion.div>
-            </div>
-
-            {/* Right Column: Framed Image Composition */}
-            <div className="lg:col-span-5 xl:col-span-6 relative hidden lg:block">
+            </div>            {/* Right Column: Immersive Visual Pillar */}
+            <div className="lg:col-span-5 xl:col-span-6 relative hidden lg:flex items-center justify-center">
               <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10"
+                transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full h-full max-h-[800px] flex items-center justify-center"
               >
-                <div className="aspect-[4/3] relative rounded-lg overflow-hidden border border-white/5 shadow-2xl group">
+                {/* Immersive Image with Organic Fade */}
+                <div className="relative w-full aspect-square md:aspect-[4/5] lg:aspect-auto lg:h-[90vh]">
                   <Image 
                     src="/images/hero/luxury_dish.png"
                     alt="Authentic Asian Fusion"
                     fill
-                    className="object-cover scale-105 group-hover:scale-110 transition-transform duration-[5s]"
+                    className="object-contain object-right lg:object-center scale-110"
                     priority
                   />
-                  {/* Decorative Frame Overlays */}
-                  <div className="absolute inset-4 border border-white/10 pointer-events-none rounded-sm" />
+                  {/* Organic Fade Masks */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-transparent to-transparent lg:w-1/2" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent h-1/4 bottom-0" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-transparent h-1/4 top-0" />
                 </div>
 
+                {/* Subtle Ambient Glow behind the dish */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
               </motion.div>
             </div>
           </div>
