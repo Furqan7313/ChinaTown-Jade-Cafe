@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Star, ArrowRight, Clock, Users, Play, ChevronRight, ChevronLeft, Phone, MapPin, Utensils } from "lucide-react";
+import { Star, ArrowRight, Clock, Users, Play, ChevronRight, ChevronLeft, Phone, MapPin, Utensils, Calendar } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import PremiumButton from "@/components/ui/PremiumButton";
