@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/ui/Logo";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -34,144 +35,138 @@ export default function Navbar() {
   });
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ 
-        y: isVisible ? 0 : -100,
-        opacity: isVisible ? 1 : 0,
-      }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-12 flex justify-center pointer-events-none pt-6"
-    >
-      <div className={cn(
-        "flex items-center justify-between w-full max-w-7xl px-6 md:px-10 py-3 rounded-full transition-all duration-700 pointer-events-auto border backdrop-blur-md",
-        isScrolled 
-          ? "bg-luxury-black/80 border-gold/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] py-2" 
-          : "bg-luxury-black/20 border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.1)] py-4 md:py-5"
-      )}>
-        {/* Logo */}
-        <Link href="/" className="group relative z-50">
-          <motion.div 
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center"
-          >
-            <Logo className={cn("transition-all duration-700", isScrolled ? "h-10" : "h-12 md:h-16")} />
-          </motion.div>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="relative px-6 py-2 text-[10px] font-bold tracking-[0.25em] uppercase transition-all group"
-            >
-              <span className={cn(
-                "relative z-10 transition-colors duration-500",
-                pathname === link.href ? "text-gold" : "text-whitesmoke/50 group-hover:text-whitesmoke"
-              )}>
-                {link.name}
-              </span>
-              
-              {/* Active Indicator */}
-              {pathname === link.href && (
-                <motion.div 
-                  layoutId="active-pill"
-                  className="absolute inset-0 bg-gold/5 rounded-full border border-gold/10 -z-0"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              
-              {/* Hover Glow */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold/50 group-hover:w-1/2 transition-all duration-500" />
-            </Link>
-          ))}
-          
-          <div className="ml-4 h-6 w-[1px] bg-white/10" />
-          
-          <Link
-            href="/reservations"
-            className="ml-6 relative overflow-hidden group rounded-full"
-          >
-            <div className="relative bg-crimson text-white px-9 py-3 rounded-full text-[10px] font-bold tracking-[0.25em] uppercase transition-all duration-500 group-hover:bg-gold group-hover:text-luxury-black shadow-lg shadow-crimson/20 group-hover:shadow-gold/20">
-              <span className="relative z-10">Reserve</span>
+    <>
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ 
+          y: isVisible ? 0 : -100,
+          opacity: isVisible ? 1 : 0,
+        }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-[60] pt-6 md:pt-10 px-4 md:px-8 pointer-events-none"
+      >
+        <div className="max-w-7xl mx-auto flex justify-center w-full">
+          <div className={cn(
+            "flex items-center justify-between w-full px-6 md:px-10 py-4 md:py-5 rounded-full transition-all duration-700 pointer-events-auto border backdrop-blur-2xl",
+            isScrolled 
+              ? "bg-luxury-black/95 border-gold/30 shadow-[0_30px_100px_rgba(0,0,0,0.7)]" 
+              : "bg-luxury-black/40 border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
+          )}>
+            
+            {/* Pillar 1: Logo */}
+            <div className="flex-1 flex items-center justify-start">
+              <Link href="/" className="group">
+                <Logo className={cn("transition-all duration-700", isScrolled ? "h-8 md:h-10" : "h-10 md:h-14")} />
+              </Link>
             </div>
-          </Link>
-        </nav>
 
-        {/* Mobile Toggle */}
-        <button
-          className="lg:hidden z-50 p-2 text-whitesmoke group"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <div className="relative w-6 h-5 flex flex-col justify-between items-end">
-            <motion.span 
-              animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 9 : 0, width: isMobileMenuOpen ? "100%" : "100%" }}
-              className="h-[1.5px] w-full bg-gold block origin-left rounded-full" 
-            />
-            <motion.span 
-              animate={{ opacity: isMobileMenuOpen ? 0 : 1, width: isMobileMenuOpen ? "0%" : "70%" }}
-              className="h-[1.5px] bg-gold block rounded-full" 
-            />
-            <motion.span 
-              animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? -9 : 0, width: isMobileMenuOpen ? "100%" : "100%" }}
-              className="h-[1.5px] w-full bg-gold block origin-left rounded-full" 
-            />
+            {/* Pillar 2: Centered Links (Desktop) */}
+            <nav className="hidden lg:flex items-center justify-center gap-1 flex-[2]">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="relative px-4 py-2 text-[11px] font-bold tracking-[0.25em] uppercase transition-all group"
+                >
+                  <span className={cn(
+                    "relative z-10 transition-colors duration-500",
+                    pathname === link.href ? "text-gold" : "text-whitesmoke/50 group-hover:text-whitesmoke"
+                  )}>
+                    {link.name}
+                  </span>
+                  {pathname === link.href && (
+                    <motion.div 
+                      layoutId="active-nav"
+                      className="absolute inset-x-4 bottom-1 h-px bg-gold"
+                      transition={{ type: "spring", duration: 0.6 }}
+                    />
+                  )}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Pillar 3: Actions */}
+            <div className="flex-1 flex items-center justify-end gap-4 md:gap-6">
+              <Link
+                href="/reservations"
+                className="hidden lg:flex items-center gap-2 bg-gold text-luxury-black px-8 py-3.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gold/10"
+              >
+                <span>Book Now</span>
+                <ArrowRight size={14} />
+              </Link>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                className="lg:hidden p-2 text-gold hover:bg-gold/10 rounded-full transition-colors"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                <Menu size={24} />
+              </button>
+            </div>
           </div>
-        </button>
-      </div>
+        </div>
+      </motion.header>
 
-      {/* Mobile Nav Overlay */}
+      {/* Full-Screen Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.nav
-            initial={{ opacity: 0, clipPath: "circle(0% at 90% 5%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 90% 5%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 90% 5%)" }}
-            transition={{ type: "spring", damping: 30, stiffness: 100 }}
-            className="fixed inset-0 w-full h-screen bg-luxury-black flex flex-col items-center justify-center gap-8 lg:hidden z-40"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-luxury-black flex flex-col p-8 md:p-12 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(179,0,27,0.1)_0%,transparent_70%)]" />
-            
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+            <div className="flex justify-between items-center mb-20">
+              <Logo className="h-10" />
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-3 text-gold bg-white/5 rounded-full border border-white/10"
               >
-                <Link
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    "text-4xl font-heading font-bold tracking-widest transition-colors",
-                    pathname === link.href ? "text-gold" : "text-whitesmoke/40 hover:text-gold"
-                  )}
+                <X size={28} />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-8 md:gap-10">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
                 >
-                  {link.name}
-                </Link>
-              </motion.div>
-            ))}
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      "text-5xl md:text-7xl font-heading font-medium tracking-tighter transition-all hover:italic hover:pl-4",
+                      pathname === link.href ? "text-gold italic pl-4" : "text-whitesmoke/20 hover:text-gold"
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.8 }}
+              className="mt-auto"
             >
               <Link
                 href="/reservations"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-8 bg-crimson text-white px-12 py-5 rounded-full text-xs font-bold tracking-widest uppercase shadow-2xl shadow-crimson/30"
+                className="w-full flex items-center justify-between bg-gold text-luxury-black p-8 rounded-2xl group"
               >
-                Book A Table
+                <span className="text-2xl font-bold tracking-tighter uppercase">Reserve A Table</span>
+                <ArrowRight size={32} className="group-hover:translate-x-4 transition-transform" />
               </Link>
             </motion.div>
-          </motion.nav>
+          </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }
 

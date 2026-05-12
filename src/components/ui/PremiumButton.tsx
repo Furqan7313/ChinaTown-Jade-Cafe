@@ -19,23 +19,23 @@ export default function PremiumButton({
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.98 }}
       type={type}
       className={cn(
-        "relative px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 overflow-hidden group",
+        "relative px-10 py-4 rounded-md font-bold text-xs tracking-[0.2em] uppercase transition-all duration-500 overflow-hidden group shadow-xl",
         variant === "primary" 
-          ? "bg-crimson text-white shadow-lg shadow-crimson/30" 
-          : "bg-transparent border border-whitesmoke/50 text-whitesmoke hover:border-gold hover:text-gold",
+          ? "bg-gold text-luxury-black shadow-gold/20" 
+          : "bg-transparent border border-gold/40 text-gold hover:bg-gold/5",
         className
       )}
       {...props}
     >
-      <span className="relative z-10 flex items-center justify-center gap-2">
+      <span className="relative z-10 flex items-center justify-center gap-3">
         {children}
       </span>
       {variant === "primary" && (
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-r from-gold to-crimson opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-0"
         />
       )}
     </motion.button>

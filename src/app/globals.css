@@ -55,10 +55,16 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
 .glass {
@@ -79,10 +85,11 @@ html {
 }
 
 .text-gradient-gold {
-  background: linear-gradient(to right, #D4AF37, #F5F5F5);
+  background: linear-gradient(135deg, #D4AF37 0%, #FFDF00 50%, #D4AF37 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
 }
 
 .text-gradient-crimson {
@@ -90,5 +97,33 @@ html {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.bg-luxury-matte {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0D0D0D 100%);
+}
+
+.border-gold-subtle {
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.glass-dark {
+  background: rgba(13, 13, 13, 0.7);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.5), transparent);
 }
 

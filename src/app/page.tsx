@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Star, ArrowRight, Clock, Users, Play, ChevronRight, ChevronLeft, Phone, MapPin } from "lucide-react";
+import { Star, ArrowRight, Clock, Users, Play, ChevronRight, ChevronLeft, Phone, MapPin, Utensils } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import PremiumButton from "@/components/ui/PremiumButton";
@@ -115,125 +115,163 @@ export default function Home() {
         }}
       />
       {/* HERO SECTION */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden py-32 md:py-40">
-        {/* Cinematic Background */}
-        <motion.div 
-          style={{ y: y1 }} 
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 z-0"
-        >
-          <Image 
-            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop" 
-            alt="Chinatown & Jade Café Luxury Dining" 
-            fill 
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-black/40 to-luxury-black"></div>
-          <div className="absolute inset-0 bg-luxury-black/20"></div>
-        </motion.div>
+      <section ref={heroRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0a0a0a] pt-20">
+        <div className="container relative z-20 px-6 lg:px-12 py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Content */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-2xl"
+            >
+              <motion.span 
+                initial={{ opacity: 0, letterSpacing: "0.2em" }}
+                animate={{ opacity: 1, letterSpacing: "0.5em" }}
+                transition={{ duration: 1.5, delay: 0.5 }}
+                className="text-gold text-[10px] md:text-xs font-bold uppercase block mb-6"
+              >
+                THE CULINARY LANDMARK
+              </motion.span>
+              
+              <h1 className="font-heading text-4xl sm:text-6xl md:text-8xl lg:text-[7rem] font-bold leading-[1] sm:leading-[0.9] tracking-tighter mb-6 md:mb-8">
+                <span className="text-whitesmoke block">CHINATOWN</span>
+                <span className="text-gold italic font-playfair font-light block">& JADE CAFÉ</span>
+              </h1>
 
-        {/* Subtle Atmospheric Effects */}
-        <div className="absolute inset-0 pointer-events-none z-10">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05)_0%,transparent_70%)]" />
+              <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-10">
+                <div className="w-16 h-px bg-gold/30" />
+                <div className="text-gold opacity-80">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.5c-1.35-3.33-4.5-5.5-8-5.5 0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5c-3.5 0-6.65 2.17-8 5.5zM12 21.5c1.35-3.33 4.5-5.5 8-5.5 0-3-2.5-5.5-5.5-5.5s-5.5 2.5-5.5 5.5c3.5 0 6.65 2.17 8 5.5zM12 8.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+                  </svg>
+                </div>
+                <div className="flex-grow h-px bg-gold/30" />
+              </div>
+              
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 1 }}
+                className="text-[13px] md:text-sm text-whitesmoke/60 mb-12 max-w-lg font-medium leading-relaxed"
+              >
+                Experience the fusion of authentic Asian heritage and modern luxury in the heart of Multan. Every dish is a masterpiece crafted with precision.
+              </motion.p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href='/menu'}
+                  className="bg-gold text-luxury-black w-full sm:w-auto px-10 py-4 rounded-md font-bold text-[11px] tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-3 shadow-xl shadow-gold/10"
+                >
+                  VIEW MENU <ArrowRight size={14} />
+                </motion.button>
+
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href='/reservations'}
+                  className="border border-gold/40 text-gold w-full sm:w-auto px-10 py-4 rounded-md font-bold text-[11px] tracking-[0.2em] uppercase transition-all hover:bg-gold/5 flex items-center justify-center"
+                >
+                  RESERVE A TABLE
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Right Content - Cinematic Image */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative aspect-square lg:aspect-[4/5] xl:aspect-square w-full max-w-[600px] mx-auto lg:ml-auto"
+            >
+              <div className="absolute inset-0 bg-gold/5 blur-[120px] rounded-full scale-75 animate-pulse" />
+              <div className="relative h-full w-full rounded-[2rem] overflow-hidden border border-gold/20 shadow-2xl">
+                <Image 
+                  src="/images/hero/luxury_dish.png" 
+                  alt="Signature Asian Dish" 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover hover:scale-110 transition-transform duration-[3s]"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-transparent opacity-60" />
+              </div>
+              
+              {/* Floating Element */}
+              <motion.div 
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-8 -left-8 glass p-6 rounded-2xl border-gold/20 hidden md:block"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-gold">
+                    <Star size={20} fill="currentColor" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-gold font-bold">Chef's Special</p>
+                    <p className="text-sm font-bold text-whitesmoke">Hand-Pulled Noodles</p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+          </div>
         </div>
 
-        {/* Floating Dish (Interactive Visual) */}
-        <motion.div 
-          style={{ 
-            x: dishX,
-            y: dishY,
-            rotate: dishRotate,
-          }}
-          className="absolute right-[-10%] top-[10%] w-[500px] h-[500px] pointer-events-none z-10 opacity-30 mix-blend-screen hidden lg:block"
-        >
-          <Image 
-            src="/images/menu/dynamite_shrimps.png" 
-            alt="Floating Special" 
-            fill 
-            sizes="500px"
-            className="object-contain animate-float"
-          />
-        </motion.div>
-
-        <div className="container relative z-20 px-6 text-center">
+        {/* BOTTOM FEATURE BAR */}
+        <div className="container relative z-20 px-6 lg:px-12 pb-20">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="max-w-6xl mx-auto"
+            transition={{ delay: 1.5 }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 p-10 md:p-12 rounded-[2rem] bg-luxury-black/50 border border-white/5 backdrop-blur-xl"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 }}
-              className="mb-8"
-            >
-              <div className="flex items-center justify-center gap-6">
-                <div className="h-[1px] w-12 bg-gold/50" />
-                <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-[0.8em]">
-                  The Culinary Landmark
-                </span>
-                <div className="h-[1px] w-12 bg-gold/50" />
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 group">
+              <div className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-luxury-black transition-all">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M12 21.5c-1.35-3.33-4.5-5.5-8-5.5 0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5c-3.5 0-6.65 2.17-8 5.5z" />
+                </svg>
               </div>
-            </motion.div>
-            
-            <div className="overflow-hidden mb-8 md:mb-12">
-              <motion.h1 
-                initial={{ opacity: 0, y: 150 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                className="font-heading text-6xl md:text-8xl lg:text-[8rem] xl:text-[10rem] font-bold leading-[0.85] tracking-tighter"
-              >
-                CHINATOWN <br />
-                <span className="text-gradient-gold italic font-playfair font-light block mt-4">& JADE CAFÉ</span>
-              </motion.h1>
+              <div>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-whitesmoke mb-2">AUTHENTIC ASIAN CUISINE</h4>
+                <p className="text-[10px] text-whitesmoke/40 leading-relaxed max-w-[180px]">Traditional flavors crafted with passion.</p>
+              </div>
             </div>
-            
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 1.2 }}
-              className="text-[10px] md:text-xs text-whitesmoke/50 mb-12 md:mb-16 max-w-2xl mx-auto font-bold uppercase tracking-[0.6em] leading-loose"
-            >
-              Experience the fusion of authentic Asian heritage <br className="hidden md:block" /> and modern luxury in the heart of Multan.
-            </motion.p>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 1 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-8"
-            >
-              <PremiumButton onClick={() => window.location.href='/menu'} className="min-w-[220px]">
-                Explore Menu
-              </PremiumButton>
-              <PremiumButton variant="outline" onClick={() => window.location.href='/reservations'} className="min-w-[220px]">
-                Reserve Table
-              </PremiumButton>
-            </motion.div>
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 group">
+              <div className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-luxury-black transition-all">
+                <Utensils size={20} />
+              </div>
+              <div>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-whitesmoke mb-2">PREMIUM EXPERIENCE</h4>
+                <p className="text-[10px] text-whitesmoke/40 leading-relaxed max-w-[180px]">Elegant ambiance & impeccable service.</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 group">
+              <div className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-luxury-black transition-all">
+                <MapPin size={20} />
+              </div>
+              <div>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-whitesmoke mb-2">HEART OF MULTAN</h4>
+                <p className="text-[10px] text-whitesmoke/40 leading-relaxed max-w-[180px]">A culinary destination you'll love to revisit.</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 group">
+              <div className="w-12 h-12 rounded-full border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-luxury-black transition-all">
+                <Clock size={20} />
+              </div>
+              <div>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-whitesmoke mb-2">EASY RESERVATIONS</h4>
+                <p className="text-[10px] text-whitesmoke/40 leading-relaxed max-w-[180px]">Book your table in just a few clicks.</p>
+              </div>
+            </div>
           </motion.div>
         </div>
-
-        {/* Refined Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
-        >
-          <span className="text-[8px] uppercase tracking-[0.4em] text-gold/50 font-bold">Discovery</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-gold/50 to-transparent relative overflow-hidden">
-            <motion.div 
-              animate={{ y: ["-100%", "100%"] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 left-0 w-full h-full bg-gold"
-            />
-          </div>
-        </motion.div>
       </section>
 
       {/* ABOUT SECTION - THE LEGACY */}
