@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-luxury-black: #0D0D0D;
+  --color-luxury-black: #080808;
+  --color-luxury-matte: #121212;
   --color-crimson: #B3001B;
   --color-gold: #D4AF37;
+  --color-gold-light: #F5E6BE;
   --color-whitesmoke: #F5F5F5;
   --color-charcoal: #121212;
   
@@ -20,7 +22,6 @@
     to { transform: rotate(0deg); }
   }
 
-
   --animate-spin-slow: spin-slow 12s linear infinite;
   --animate-reverse-spin-slow: reverse-spin-slow 15s linear infinite;
 
@@ -32,28 +33,16 @@
   --animate-float: float 6s ease-in-out infinite;
 }
 
-.vertical-text {
-  writing-mode: vertical-rl;
-}
-:root {
-  /* Luxury Design Tokens */
-  --gold: #D4AF37;
-  --gold-light: #F5E6BE;
-  --luxury-black: #080808;
-  --luxury-matte: #121212;
-  --whitesmoke: #F5F5F5;
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    background-color: var(--luxury-black);
+    background-color: var(--color-luxury-black);
   }
 
   body {
-    background-color: var(--luxury-black);
-    color: var(--whitesmoke);
+    background-color: var(--color-luxury-black);
+    color: var(--color-whitesmoke);
     font-family: var(--font-inter);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -62,23 +51,40 @@
 
 @layer utilities {
   .text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-b from-gold-light via-gold to-[#8B732A];
+    background: linear-gradient(135deg, #F5E6BE 0%, #D4AF37 50%, #8B732A 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+  }
+
+  .text-gradient-crimson {
+    background: linear-gradient(to right, #B3001B, #D4AF37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .bg-luxury-matte {
-    background-color: var(--luxury-matte);
+    background: radial-gradient(circle at center, #1a1a1a 0%, #080808 100%);
   }
 
   .glass-dark {
-    @apply bg-luxury-black/60 backdrop-blur-3xl border border-white/10;
+    background: rgba(8, 8, 8, 0.7);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .glass-gold {
-    @apply bg-gold/5 backdrop-blur-xl border border-gold/20;
+    background: rgba(212, 175, 55, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
   }
 
   .gold-glow {
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
   }
 
   .cinematic-grain {
@@ -88,7 +94,7 @@
     width: 100%;
     height: 100%;
     content: "";
-    opacity: 0.03;
+    opacity: 0.02;
     z-index: 9999;
     pointer-events: none;
     background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
@@ -96,63 +102,19 @@
   }
 
   .radial-glow {
-    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
   }
 
-  .hero-vignette {
-    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  .vertical-text {
+    writing-mode: vertical-rl;
+  }
+
+  .reveal-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.4), transparent);
   }
 }
-
-.font-heading {
-  font-family: var(--font-playfair), serif;
-}
-
-/* Custom Utilities for smooth animations */
-html {
-  scroll-behavior: smooth;
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, #D4AF37 0%, #FFDF00 50%, #D4AF37 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-}
-
-.text-gradient-crimson {
-  background: linear-gradient(to right, #B3001B, #D4AF37);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.bg-luxury-matte {
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0D0D0D 100%);
-}
-
-.border-gold-subtle {
-  border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.gold-glow {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-}
-
-.glass-dark {
-  background: rgba(13, 13, 13, 0.7);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.reveal-text {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.gold-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.5), transparent);
-}
-
