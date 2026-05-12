@@ -43,13 +43,24 @@
   body {
     background-color: var(--color-luxury-black);
     color: var(--color-whitesmoke);
-    font-family: var(--font-inter);
+    font-family: var(--font-body), sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), serif;
+    font-weight: 500;
   }
 }
 
 @layer utilities {
+  .border-text {
+    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
+    text-shadow: none;
+  }
+
   .text-gradient-gold {
     background: linear-gradient(135deg, #F5E6BE 0%, #D4AF37 50%, #8B732A 100%);
     -webkit-background-clip: text;

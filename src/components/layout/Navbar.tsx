@@ -8,9 +8,11 @@ import { Menu, X, Phone, Utensils, Star, ChevronRight } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 
 const navLinks = [
-  { name: "THE MENU", href: "/menu" },
-  { name: "OUR STORY", href: "/about" },
+  { name: "HOME", href: "/" },
+  { name: "MENU", href: "/menu" },
   { name: "GALLERY", href: "/gallery" },
+  { name: "RESERVATIONS", href: "/reservations" },
+  { name: "ABOUT", href: "/about" },
   { name: "CONTACT", href: "/contact" },
 ];
 
@@ -37,45 +39,40 @@ export default function Navbar() {
       animate={{ y: visible ? 0 : -100 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
-        scrolled ? "py-4" : "py-8"
+        scrolled ? "py-2" : "py-6"
       }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
-        <div className={`relative flex items-center justify-between rounded-full transition-all duration-700 ${
+        <div className={`relative flex items-center justify-between transition-all duration-700 ${
           scrolled 
-            ? "glass-dark px-8 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-gold/20" 
+            ? "glass-dark px-8 py-3 rounded-full border-gold/20" 
             : "bg-transparent px-4 py-2 border-transparent"
         }`}>
           
-          <div className="flex-1 flex items-center">
-            <Link href="/" className="group relative">
-              <div className="absolute -inset-8 bg-gold/20 blur-[40px] rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-50 group-hover:scale-110" />
-              <Logo className={`relative z-10 transition-all duration-700 ${scrolled ? "scale-90" : "scale-100"} group-hover:scale-105 group-hover:brightness-110`} />
+          {/* Left: Branding */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="group block">
+              <Logo className={`transition-transform duration-500 w-auto h-12 md:h-16 ${scrolled ? "scale-90" : "scale-100"}`} />
             </Link>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-14">
+          {/* Center: Curated Links (Desktop) */}
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href}
                 className="group relative"
               >
-                <span className={`text-[9px] font-bold tracking-[0.5em] uppercase transition-all duration-500 ${
-                  pathname === link.href ? "text-gold" : "text-whitesmoke/40 group-hover:text-whitesmoke"
+                <span className={`text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 ${
+                  pathname === link.href ? "text-gold" : "text-white/60 group-hover:text-white"
                 }`}>
                   {link.name}
                 </span>
-                <motion.div 
-                  className="absolute -bottom-3 left-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent"
-                  initial={{ width: 0, opacity: 0 }}
-                  whileHover={{ width: "100%", opacity: 1 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                />
                 {pathname === link.href && (
                   <motion.div 
                     layoutId="navUnderline"
-                    className="absolute -bottom-3 left-0 w-full h-[1.5px] bg-gold shadow-[0_0_10px_rgba(212,175,55,0.5)]"
+                    className="absolute -bottom-2 left-0 w-full h-[2px] bg-gold"
                   />
                 )}
               </Link>
@@ -83,20 +80,15 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Action Pillar */}
-          <div className="flex-1 flex items-center justify-end gap-6">
-            <div className="hidden xl:flex flex-col items-end mr-4">
-              <span className="text-[8px] font-bold tracking-widest text-gold/60 uppercase">The Reserve</span>
-              <span className="text-[10px] font-bold text-whitesmoke tracking-wider">+92 (061) 4504100</span>
-            </div>
-
-            <Link href="/reservations" className="hidden sm:block">
+          <div className="flex items-center">
+            <Link href="/reservations" className="hidden lg:block">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(212, 175, 55, 0.3)" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative bg-gold text-luxury-black px-8 py-3 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase transition-all overflow-hidden group"
+                className="relative bg-gold text-black px-8 py-3 rounded-full font-bold text-[10px] tracking-[0.15em] uppercase transition-all flex items-center gap-2 group"
               >
-                <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 opacity-20" />
-                <span className="relative z-10">Secure a Table</span>
+                <span>Reserve a Table</span>
+                <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </Link>
 
@@ -160,9 +152,15 @@ export default function Navbar() {
                 </nav>
 
                 <div className="hidden lg:block space-y-12">
-                  <div className="aspect-[4/5] rounded-[3rem] overflow-hidden border border-gold/20 relative group">
-                    <img src="/images/hero/luxury_dish.png" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
-                    <div className="absolute inset-0 bg-luxury-black/40" />
+                  <div className="aspect-[4/5] rounded-xl overflow-hidden border border-gold/30 relative group shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
+                    <img src="/images/hero/luxury_dish.png" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105" />
+                    <div className="absolute inset-0 bg-luxury-black/30 group-hover:bg-transparent transition-all duration-1000" />
+                    {/* Interior Decorative Frame */}
+                    <div className="absolute inset-4 border border-gold/10 pointer-events-none rounded-lg" />
+                  </div>
+                  <div className="flex justify-between items-end border-b border-gold/10 pb-4">
+                    <span className="text-[10px] font-bold text-gold uppercase tracking-[0.5em]">Signature Creation</span>
+                    <span className="text-[10px] text-whitesmoke/20 uppercase tracking-[0.3em]">Hand-crafted</span>
                   </div>
                 </div>
               </div>
