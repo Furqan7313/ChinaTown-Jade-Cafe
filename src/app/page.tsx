@@ -89,25 +89,11 @@ export default function Home() {
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black z-10" />
           
-          {/* Subtle Monumental Background Text - Now Outlined and More Professional */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            <h2 
-              className="text-[25vw] font-bold font-heading whitespace-nowrap tracking-tighter select-none opacity-[0.04]"
-              style={{ 
-                WebkitTextStroke: '1px rgba(212, 175, 55, 0.3)',
-                color: 'transparent'
-              }}
-            >
-              HERITAGE
-            </h2>
-          </div>
-
           <motion.div 
             animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.1, 0.2, 0.1] 
+              opacity: [0.05, 0.15, 0.05] 
             }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.1),transparent_50%)]" 
           />
         </div>
@@ -128,48 +114,46 @@ export default function Home() {
                   </span>
                 </div>
                 
-                <h1 className="font-heading text-6xl md:text-8xl lg:text-[7.5rem] font-medium leading-[0.9] tracking-tight mb-8">
+                <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-medium leading-[1] tracking-tight mb-8">
                   <span className="text-white block">CHINATOWN</span>
-                  <span className="text-gradient-gold italic block">& JADE CAFÉ</span>
+                  <span className="text-gold italic block">& JADE CAFÉ</span>
                 </h1>
 
-                {/* Decorative Elements from Reference */}
-                <div className="flex items-center gap-6 mb-8">
-                  <div className="w-12 h-12 flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" className="w-8 h-8 text-gold fill-none stroke-current stroke-[1px]">
-                      <path d="M12 22C12 22 17 18 17 13C17 11.5 16 10.5 15 10.5C14 10.5 13 11.5 12 13C11 11.5 10 10.5 9 10.5C8 10.5 7 11.5 7 13C7 18 12 22 12 22Z" />
-                      <path d="M12 22C12 22 7 18 7 13C7 11.5 8 10.5 9 10.5C10 10.5 11 11.5 12 13" />
-                      <path d="M12 22C12 22 17 18 17 13C17 11.5 16 10.5 15 10.5C14 10.5 13 11.5 12 13" />
-                      <path d="M12 13V2" />
-                      <path d="M9 10.5C9 10.5 5 9 5 5" />
-                      <path d="M15 10.5C15 10.5 19 9 19 5" />
+                {/* Refined Lotus Divider */}
+                <div className="flex items-center gap-6 mb-10">
+                  <div className="w-10 h-10 flex items-center justify-center opacity-80">
+                    <svg viewBox="0 0 24 24" className="w-6 h-6 text-gold fill-none stroke-current stroke-[1.2]">
+                      <path d="M12 21C12 21 16 18 16 14C16 12 14 11 12 11C10 11 8 12 8 14C8 18 12 21 12 21Z" />
+                      <path d="M12 21C12 21 8 18 8 14C8 12 9 11 10 11" />
+                      <path d="M12 21C12 21 16 18 16 14C16 12 15 11 14 11" />
+                      <path d="M12 11V3" />
                     </svg>
                   </div>
-                  <div className="h-px flex-grow bg-gold/20 max-w-[200px]" />
+                  <div className="h-[1px] flex-grow bg-gold/10 max-w-[150px]" />
                 </div>
 
-                <p className="text-white/60 text-lg md:text-xl max-w-xl leading-relaxed mb-12 font-light">
-                  Experience the fusion of authentic Asian heritage and modern luxury in the heart of Multan.
+                <p className="text-white/50 text-base md:text-lg max-w-lg leading-relaxed mb-12 font-light">
+                  An immersive sanctuary where authentic Asian heritage meets modern luxury hospitality in the heart of Multan.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center gap-5">
                   <Link href="/menu" className="w-full sm:w-auto">
                     <motion.button 
-                      whileHover={{ scale: 1.02 }}
+                      whileHover={{ scale: 1.02, backgroundColor: "#E5C158" }}
                       whileTap={{ scale: 0.98 }}
-                      className="bg-gold text-black px-10 py-4 rounded-md font-bold text-[11px] tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-3 w-full"
+                      className="bg-gold text-black px-10 py-4 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-2 w-full"
                     >
-                      View Menu <ArrowRight size={16} />
+                      Explore Menu <ArrowRight size={14} />
                     </motion.button>
                   </Link>
 
                   <Link href="/reservations" className="w-full sm:w-auto">
                     <motion.button 
-                      whileHover={{ scale: 1.02, backgroundColor: "rgba(212,175,55,0.05)" }}
+                      whileHover={{ scale: 1.02, borderColor: "#D4AF37", color: "#D4AF37" }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-10 py-4 rounded-md font-bold text-[11px] tracking-[0.2em] uppercase text-gold border border-gold/40 transition-all w-full"
+                      className="px-10 py-4 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/10 transition-all w-full"
                     >
-                      Reserve a Table
+                      Book a Table
                     </motion.button>
                   </Link>
                 </div>
@@ -196,12 +180,6 @@ export default function Home() {
                   <div className="absolute inset-4 border border-white/10 pointer-events-none rounded-sm" />
                 </div>
 
-                {/* Vertical Signature - Refined */}
-                <div className="absolute -left-24 top-1/2 -translate-y-1/2 hidden xl:block pointer-events-none">
-                  <p className="vertical-text text-[8px] font-bold tracking-[1.5em] text-gold/30 uppercase whitespace-nowrap">
-                    ESTABLISHED 2009 — MULTAN — PAKISTAN
-                  </p>
-                </div>
               </motion.div>
             </div>
           </div>

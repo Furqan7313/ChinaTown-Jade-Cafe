@@ -98,24 +98,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Huge Typographic Footer */}
-        <div className="border-t border-gold/5 pt-20">
-          <div className="flex flex-col lg:flex-row justify-between items-end gap-12">
-            <div className="overflow-hidden">
-              <h2 className="text-[12vw] lg:text-[8vw] font-bold font-heading leading-none tracking-tighter text-whitesmoke/5 uppercase">
-                Chinatown
-              </h2>
-            </div>
-            <div className="flex flex-col items-end gap-4">
-              <div className="flex gap-8 text-[9px] font-bold uppercase tracking-[0.5em] text-whitesmoke/20">
-                <Link href="#" className="hover:text-gold transition-colors">Privacy</Link>
-                <Link href="#" className="hover:text-gold transition-colors">Terms</Link>
-                <Link href="#" className="hover:text-gold transition-colors">Cookie Policy</Link>
-              </div>
-              <p className="text-[9px] font-bold uppercase tracking-[0.5em] text-whitesmoke/10">
-                © 2026 THE JADE GROUP — ALL RIGHTS RESERVED
-              </p>
-            </div>
+        {/* Bottom Section */}
+        <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/10">
+            © 2026 THE JADE GROUP — ALL RIGHTS RESERVED
+          </p>
+          <div className="flex gap-8 text-[9px] font-bold uppercase tracking-[0.4em] text-white/20">
+            <Link href="#" className="hover:text-gold transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-gold transition-colors">Terms</Link>
           </div>
         </div>
       </div>

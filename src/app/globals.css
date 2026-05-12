@@ -85,21 +85,12 @@
   }
 
   .glass-dark {
-    background: rgba(8, 8, 8, 0.75);
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    background: rgba(8, 8, 8, 0.85);
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
-  }
-
-  .glass-dark::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity: 0.05;
-    pointer-events: none;
   }
 
   .glass-gold {
