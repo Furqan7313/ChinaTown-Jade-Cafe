@@ -37,74 +37,92 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ 
-          y: isVisible ? 0 : -100,
-          opacity: isVisible ? 1 : 0,
-        }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-[60] pt-6 md:pt-10 px-4 md:px-8 pointer-events-none"
-      >
-        <div className="max-w-7xl mx-auto flex justify-center w-full">
-          <div className={cn(
-            "flex items-center justify-between w-full px-6 md:px-10 py-4 md:py-5 rounded-full transition-all duration-700 pointer-events-auto border backdrop-blur-2xl",
-            isScrolled 
-              ? "bg-luxury-black/95 border-gold/30 shadow-[0_30px_100px_rgba(0,0,0,0.7)]" 
-              : "bg-luxury-black/40 border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
-          )}>
-            
-            {/* Pillar 1: Logo */}
-            <div className="flex-1 flex items-center justify-start">
-              <Link href="/" className="group">
-                <Logo className={cn("transition-all duration-700", isScrolled ? "h-8 md:h-10" : "h-10 md:h-14")} />
-              </Link>
-            </div>
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ 
+        y: isVisible ? 0 : -100,
+        opacity: isVisible ? 1 : 0,
+      }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-[60] transition-all duration-700 pointer-events-none",
+        isScrolled ? "pt-4" : "pt-8 md:pt-12"
+      )}
+    >
+      <div className="max-w-screen-2xl mx-auto flex justify-center w-full px-6">
+        <div className={cn(
+          "flex items-center justify-between w-full px-8 md:px-12 rounded-full transition-all duration-1000 pointer-events-auto border backdrop-blur-3xl",
+          isScrolled 
+            ? "bg-luxury-black/90 border-gold/30 shadow-[0_40px_120px_rgba(0,0,0,0.8)] py-3 md:py-4 scale-[0.98]" 
+            : "bg-transparent border-white/10 py-6 md:py-10 scale-100"
+        )}>
+          
+          {/* Pillar 1: Brand */}
+          <div className="flex-1 flex items-center justify-start">
+            <Link href="/" className="group">
+              <motion.div
+                animate={{ scale: isScrolled ? 0.9 : 1 }}
+                className="flex items-center"
+              >
+                <Logo className={cn("transition-all duration-1000", isScrolled ? "h-8 md:h-10" : "h-11 md:h-16")} />
+              </motion.div>
+            </Link>
+          </div>
 
-            {/* Pillar 2: Centered Links (Desktop) */}
-            <nav className="hidden lg:flex items-center justify-center gap-1 flex-[2]">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="relative px-4 py-2 text-[11px] font-bold tracking-[0.25em] uppercase transition-all group"
-                >
-                  <span className={cn(
-                    "relative z-10 transition-colors duration-500",
-                    pathname === link.href ? "text-gold" : "text-whitesmoke/50 group-hover:text-whitesmoke"
-                  )}>
-                    {link.name}
-                  </span>
-                  {pathname === link.href && (
-                    <motion.div 
-                      layoutId="active-nav"
-                      className="absolute inset-x-4 bottom-1 h-px bg-gold"
-                      transition={{ type: "spring", duration: 0.6 }}
-                    />
-                  )}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Pillar 3: Actions */}
-            <div className="flex-1 flex items-center justify-end gap-4 md:gap-6">
+          {/* Pillar 2: Navigation Links (Desktop) */}
+          <nav className="hidden lg:flex items-center justify-center gap-1 flex-[2]">
+            {navLinks.map((link) => (
               <Link
-                href="/reservations"
-                className="hidden lg:flex items-center gap-2 bg-gold text-luxury-black px-8 py-3.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gold/10"
+                key={link.name}
+                href={link.href}
+                className="relative px-5 py-2 text-[11px] font-bold tracking-[0.35em] uppercase transition-all group"
               >
-                <span>Book Now</span>
-                <ArrowRight size={14} />
+                <span className={cn(
+                  "relative z-10 transition-colors duration-700",
+                  pathname === link.href ? "text-gold" : "text-whitesmoke/40 group-hover:text-whitesmoke"
+                )}>
+                  {link.name}
+                </span>
+                {pathname === link.href && (
+                  <motion.div 
+                    layoutId="nav-active"
+                    className="absolute inset-0 bg-gold/[0.03] rounded-full -z-0"
+                    transition={{ type: "spring", duration: 0.8 }}
+                  />
+                )}
+                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent group-hover:w-1/2 transition-all duration-700 opacity-0 group-hover:opacity-100" />
               </Link>
+            ))}
+          </nav>
 
-              {/* Mobile Menu Toggle */}
-              <button
-                className="lg:hidden p-2 text-gold hover:bg-gold/10 rounded-full transition-colors"
-                onClick={() => setIsMobileMenuOpen(true)}
+          {/* Pillar 3: Actions */}
+          <div className="flex-1 flex items-center justify-end gap-8">
+            <Link
+              href="/reservations"
+              className="hidden lg:flex items-center gap-3 group relative"
+            >
+              <div className="absolute -inset-4 bg-gold/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full" />
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className={cn(
+                  "relative z-10 bg-gold text-luxury-black font-bold tracking-[0.25em] uppercase transition-all duration-700 flex items-center gap-3 shadow-2xl rounded-full",
+                  isScrolled ? "px-8 py-3.5 text-[9px]" : "px-10 py-4 text-[10px]"
+                )}
               >
-                <Menu size={24} />
-              </button>
-            </div>
+                <span>Reserve A Table</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-500" />
+              </motion.div>
+            </Link>
+
+            <button
+              className="lg:hidden p-3 text-gold hover:bg-gold/10 rounded-full transition-colors border border-gold/20"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu size={24} />
+            </button>
           </div>
         </div>
+      </div>
       </motion.header>
 
       {/* Full-Screen Mobile Menu */}

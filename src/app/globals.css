@@ -35,48 +35,77 @@
 .vertical-text {
   writing-mode: vertical-rl;
 }
-
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
 :root {
-  --background: #F5F5F5;
-  --foreground: #0D0D0D;
+  /* Luxury Design Tokens */
+  --gold: #D4AF37;
+  --gold-light: #F5E6BE;
+  --luxury-black: #080808;
+  --luxury-matte: #121212;
+  --whitesmoke: #F5F5F5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0D0D0D;
-    --foreground: #F5F5F5;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background-color: var(--luxury-black);
+  }
+
+  body {
+    background-color: var(--luxury-black);
+    color: var(--whitesmoke);
+    font-family: var(--font-inter);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-gold-light via-gold to-[#8B732A];
+  }
+
+  .bg-luxury-matte {
+    background-color: var(--luxury-matte);
+  }
+
+  .glass-dark {
+    @apply bg-luxury-black/60 backdrop-blur-3xl border border-white/10;
+  }
+
+  .glass-gold {
+    @apply bg-gold/5 backdrop-blur-xl border border-gold/20;
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+  }
+
+  .cinematic-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    opacity: 0.03;
+    z-index: 9999;
+    pointer-events: none;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    mix-blend-mode: overlay;
+  }
+
+  .radial-glow {
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  }
+
+  .hero-vignette {
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
-  overflow-x: hidden;
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dark .glass {
-  background: rgba(13, 13, 13, 0.6);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+.font-heading {
+  font-family: var(--font-playfair), serif;
 }
 
 /* Custom Utilities for smooth animations */
