@@ -29,8 +29,8 @@ export default function ReviewForm() {
         className="glass-dark p-10 md:p-20 rounded-[3.5rem] border border-white/5 relative overflow-hidden shadow-2xl"
       >
         {/* Subtle Decorative Elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -mr-32 -mt-32" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -ml-32 -mb-32" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-jade/5 rounded-full blur-3xl -mr-32 -mt-32" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-jade/5 rounded-full blur-3xl -ml-32 -mb-32" />
 
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
@@ -43,9 +43,9 @@ export default function ReviewForm() {
             >
               <div className="text-center mb-16">
                 <div className="inline-flex flex-col items-center">
-                  <span className="text-gold font-bold uppercase tracking-[0.6em] text-[10px] mb-4 block">Share Your Experience</span>
+                  <span className="text-jade font-bold uppercase tracking-[0.6em] text-[10px] mb-4 block">Share Your Experience</span>
                   <h3 className="text-4xl md:text-5xl font-heading italic text-whitesmoke mb-4">Write a Review</h3>
-                  <div className="h-0.5 w-16 bg-gold/30 rounded-full" />
+                  <div className="h-0.5 w-16 bg-jade/30 rounded-full" />
                 </div>
               </div>
 
@@ -68,7 +68,7 @@ export default function ReviewForm() {
                           className={cn(
                             "transition-all duration-500",
                             (hoveredRating || rating) >= star 
-                              ? "text-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" 
+                              ? "text-gold drop-shadow-[0_0_15px_rgba(200,169,107,0.4)]" 
                               : "text-white/10 group-hover:text-white/30"
                           )}
                         />
@@ -83,7 +83,7 @@ export default function ReviewForm() {
                     <input 
                       required
                       type="text" 
-                      className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-5 focus:border-gold/50 focus:bg-white/[0.05] outline-none transition-all text-whitesmoke text-sm backdrop-blur-sm" 
+                      className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-5 focus:border-jade/50 focus:bg-white/[0.05] outline-none transition-all text-whitesmoke text-sm backdrop-blur-sm" 
                       placeholder="Enter your name" 
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -94,7 +94,7 @@ export default function ReviewForm() {
                     <input 
                       required
                       type="email" 
-                      className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-5 focus:border-gold/50 focus:bg-white/[0.05] outline-none transition-all text-whitesmoke text-sm backdrop-blur-sm" 
+                      className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-5 focus:border-jade/50 focus:bg-white/[0.05] outline-none transition-all text-whitesmoke text-sm backdrop-blur-sm" 
                       placeholder="your@email.com" 
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -107,7 +107,7 @@ export default function ReviewForm() {
                   <textarea 
                     required
                     rows={5}
-                    className="w-full bg-white/[0.03] border border-white/10 rounded-3xl px-6 py-5 focus:border-gold/50 focus:bg-white/[0.05] outline-none transition-all text-whitesmoke text-sm resize-none backdrop-blur-sm" 
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-3xl px-6 py-5 focus:border-jade/50 focus:bg-white/[0.05] outline-none transition-all text-whitesmoke text-sm resize-none backdrop-blur-sm" 
                     placeholder="Tell us about your dining experience..." 
                     value={formData.comment}
                     onChange={(e) => setFormData({...formData, comment: e.target.value})}
@@ -115,7 +115,7 @@ export default function ReviewForm() {
                 </div>
 
                 <div className="pt-6">
-                  <PremiumButton type="submit" className="w-full py-6 rounded-full group shadow-2xl">
+                  <PremiumButton type="submit" variant="jade" className="w-full py-6 rounded-full group shadow-2xl">
                     Submit Review <Send size={16} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </PremiumButton>
                 </div>
@@ -128,8 +128,8 @@ export default function ReviewForm() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-20 relative z-10"
             >
-              <div className="w-24 h-24 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-10 border border-gold/20 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
-                <CheckCircle2 size={48} className="text-gold" />
+              <div className="w-24 h-24 bg-jade/10 rounded-full flex items-center justify-center mx-auto mb-10 border border-jade/20 shadow-[0_0_30px_rgba(15,107,91,0.1)]">
+                <CheckCircle2 size={48} className="text-jade" />
               </div>
               <h3 className="text-4xl font-heading italic mb-6">Thank You!</h3>
               <p className="text-whitesmoke/50 max-w-md mx-auto leading-relaxed">
@@ -137,7 +137,7 @@ export default function ReviewForm() {
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="mt-12 text-gold font-bold uppercase tracking-[0.4em] text-[10px] hover:text-white transition-colors underline underline-offset-[12px] decoration-gold/30"
+                className="mt-12 text-jade font-bold uppercase tracking-[0.4em] text-[10px] hover:text-white transition-colors underline underline-offset-[12px] decoration-jade/30"
               >
                 Write another review
               </button>

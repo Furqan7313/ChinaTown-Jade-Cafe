@@ -45,7 +45,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className={`relative flex items-center justify-between transition-all duration-700 ${
           scrolled 
-            ? "glass-dark px-8 py-3 rounded-full border-gold/20" 
+            ? "glass-dark px-8 py-3 rounded-full border-jade/20" 
             : "bg-transparent px-4 py-2 border-transparent"
         }`}>
           
@@ -65,14 +65,14 @@ export default function Navbar() {
                 className="group relative"
               >
                 <span className={`text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 ${
-                  pathname === link.href ? "text-gold" : "text-white/60 group-hover:text-white"
+                  pathname === link.href ? "text-jade" : "text-white/60 group-hover:text-white"
                 }`}>
                   {link.name}
                 </span>
                 {pathname === link.href && (
                   <motion.div 
                     layoutId="navUnderline"
-                    className="absolute -bottom-2 left-0 w-full h-[2px] bg-gold"
+                    className="absolute -bottom-2 left-0 w-full h-[2px] bg-jade"
                   />
                 )}
               </Link>
@@ -85,7 +85,7 @@ export default function Navbar() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative bg-gold text-black px-8 py-3 rounded-full font-bold text-[10px] tracking-[0.15em] uppercase transition-all flex items-center gap-2 group"
+                className="relative bg-jade text-white px-8 py-3 rounded-full font-bold text-[10px] tracking-[0.15em] uppercase transition-all flex items-center gap-2 group"
               >
                 <span>Reserve a Table</span>
                 <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -95,7 +95,7 @@ export default function Navbar() {
             {/* Mobile Toggle */}
             <button 
               onClick={() => setIsOpen(true)}
-              className="lg:hidden p-3 text-gold hover:bg-gold/10 rounded-full transition-colors"
+              className="lg:hidden p-3 text-jade hover:bg-jade/10 rounded-full transition-colors"
             >
               <Menu size={24} />
             </button>
@@ -120,7 +120,7 @@ export default function Navbar() {
               <Logo />
               <button 
                 onClick={() => setIsOpen(false)}
-                className="w-16 h-16 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-all"
+                className="w-16 h-16 rounded-full border border-jade/20 flex items-center justify-center text-jade hover:bg-jade/10 transition-all"
               >
                 <X size={32} />
               </button>
@@ -142,7 +142,7 @@ export default function Navbar() {
                         onClick={() => setIsOpen(false)}
                         className="group flex items-end gap-6"
                       >
-                        <span className="font-heading text-6xl md:text-8xl text-whitesmoke/20 group-hover:text-gold transition-colors duration-500 italic">0{i + 1}</span>
+                        <span className="font-heading text-6xl md:text-8xl text-whitesmoke/20 group-hover:text-jade transition-colors duration-500 italic">0{i + 1}</span>
                         <span className="font-heading text-5xl md:text-7xl font-bold text-whitesmoke group-hover:translate-x-4 transition-transform duration-500 uppercase tracking-tighter">
                           {link.name.split(' ')[link.name.split(' ').length - 1]}
                         </span>
@@ -152,14 +152,14 @@ export default function Navbar() {
                 </nav>
 
                 <div className="hidden lg:block space-y-12">
-                  <div className="aspect-[4/5] rounded-xl overflow-hidden border border-gold/30 relative group shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
-                    <img src="/images/hero/luxury_dish.png" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105" />
+                  <div className="aspect-[4/5] rounded-xl overflow-hidden border border-jade/30 relative group shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105" />
                     <div className="absolute inset-0 bg-luxury-black/30 group-hover:bg-transparent transition-all duration-1000" />
                     {/* Interior Decorative Frame */}
-                    <div className="absolute inset-4 border border-gold/10 pointer-events-none rounded-lg" />
+                    <div className="absolute inset-4 border border-jade/10 pointer-events-none rounded-lg" />
                   </div>
-                  <div className="flex justify-between items-end border-b border-gold/10 pb-4">
-                    <span className="text-[10px] font-bold text-gold uppercase tracking-[0.5em]">Signature Creation</span>
+                  <div className="flex justify-between items-end border-b border-jade/10 pb-4">
+                    <span className="text-[10px] font-bold text-jade uppercase tracking-[0.5em]">Signature Creation</span>
                     <span className="text-[10px] text-whitesmoke/20 uppercase tracking-[0.3em]">Hand-crafted</span>
                   </div>
                 </div>
@@ -167,19 +167,19 @@ export default function Navbar() {
             </div>
 
             {/* Overlay Footer */}
-            <div className="p-12 md:p-24 border-t border-gold/10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="p-12 md:p-24 border-t border-jade/10 flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="flex gap-12">
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold text-gold uppercase tracking-[0.3em]">Address</span>
+                  <span className="text-[10px] font-bold text-jade uppercase tracking-[0.3em]">Address</span>
                   <p className="text-whitesmoke/40 text-sm">Main Abdali Rd, Multan</p>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold text-gold uppercase tracking-[0.3em]">Follow</span>
+                  <span className="text-[10px] font-bold text-jade uppercase tracking-[0.3em]">Follow</span>
                   <p className="text-whitesmoke/40 text-sm">Instagram / Facebook</p>
                 </div>
               </div>
               <Link href="/reservations" onClick={() => setIsOpen(false)}>
-                <motion.button className="bg-gold text-luxury-black px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[0.3em]">
+                <motion.button className="bg-jade text-white px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[0.3em] shadow-xl shadow-jade/20">
                   Reserve Now
                 </motion.button>
               </Link>

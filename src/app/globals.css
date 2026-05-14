@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-luxury-black: #080808;
-  --color-luxury-matte: #121212;
+  --color-luxury-black: #111111;
+  --color-luxury-matte: #1A1A1A;
+  --color-jade: #0F6B5B;
+  --color-jade-light: #1A8B77;
+  --color-gold: #C8A96B;
+  --color-gold-light: #E5C158;
+  --color-whitesmoke: #F5F3EE;
+  --color-text-dim: #B8B8B8;
   --color-crimson: #B3001B;
-  --color-gold: #D4AF37;
-  --color-gold-light: #F5E6BE;
-  --color-whitesmoke: #F5F5F5;
-  --color-charcoal: #121212;
   
   --font-heading: var(--font-playfair);
   --font-body: var(--font-inter);
@@ -62,15 +64,21 @@
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #F5E6BE 0%, #D4AF37 50%, #8B732A 100%);
+    background: linear-gradient(135deg, #E5C158 0%, #C8A96B 50%, #8B732A 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+  }
+
+  .text-gradient-jade {
+    background: linear-gradient(135deg, #1A8B77 0%, #0F6B5B 50%, #084036 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .text-glow-gold {
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2);
+    text-shadow: 0 0 20px rgba(200, 169, 107, 0.3), 0 0 40px rgba(200, 169, 107, 0.1);
   }
 
   .text-gradient-crimson {
@@ -85,23 +93,21 @@
   }
 
   .glass-dark {
-    background: rgba(8, 8, 8, 0.85);
-    backdrop-filter: blur(30px) saturate(150%);
-    -webkit-backdrop-filter: blur(30px) saturate(150%);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
-    overflow: hidden;
+    background: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.03);
   }
 
-  .glass-gold {
-    background: rgba(212, 175, 55, 0.05);
+  .glass-jade {
+    background: rgba(15, 107, 91, 0.05);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(15, 107, 91, 0.2);
   }
 
-  .gold-glow {
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+  .jade-glow {
+    box-shadow: 0 0 40px rgba(15, 107, 91, 0.15);
   }
 
   .cinematic-noise {

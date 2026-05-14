@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 interface PremiumButtonProps extends HTMLMotionProps<"button"> {
   children: ReactNode;
-  variant?: "primary" | "outline";
+  variant?: "primary" | "outline" | "jade";
 }
 
 export default function PremiumButton({ 
@@ -22,10 +22,12 @@ export default function PremiumButton({
       whileTap={{ scale: 0.98 }}
       type={type}
       className={cn(
-        "relative px-10 py-4 rounded-md font-bold text-xs tracking-[0.2em] uppercase transition-all duration-500 overflow-hidden group shadow-xl",
-        variant === "primary" 
-          ? "bg-gold text-luxury-black shadow-gold/20" 
-          : "bg-transparent border border-gold/40 text-gold hover:bg-gold/5",
+        "relative px-12 py-5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase transition-all duration-700 overflow-hidden group",
+        variant === "jade" 
+          ? "bg-jade text-white shadow-2xl shadow-jade/20" 
+          : variant === "primary"
+          ? "bg-gold text-luxury-black shadow-2xl shadow-gold/20"
+          : "bg-transparent border border-white/10 text-whitesmoke hover:border-jade/50 hover:bg-jade/5",
         className
       )}
       {...props}
