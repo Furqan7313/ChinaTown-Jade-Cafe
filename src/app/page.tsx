@@ -52,12 +52,6 @@ const signatureDishes = [
   }
 ];
 
-const stats = [
-  { label: "Happy Customers", value: 25000, suffix: "+" },
-  { label: "Signature Dishes", value: 45, suffix: "" },
-  { label: "Years of Heritage", value: 15, suffix: "+" },
-  { label: "5-Star Reviews", value: 5000, suffix: "+" }
-];
 
 const reviews = [
   { name: "Aisha Malik", text: "The ambiance is unmatched in Multan. Every dish feels like a piece of art.", rating: 5 },
@@ -69,9 +63,6 @@ const reviews = [
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const { scrollYProgress } = useScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -81,193 +72,163 @@ export default function Home() {
 
   return (
     <div className="relative bg-luxury-black selection:bg-gold/30">
-      <div className="cinematic-grain" />
-      
-      {/* --- HERO SECTION: THE CULINARY MANIFESTO --- */}
-      <section className="relative min-h-[105vh] flex items-center pt-24 overflow-hidden bg-[#080808]">
-        {/* Atmospheric Elements */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black z-10" />
-          
+      {/* --- HERO SECTION: THE JADE SOVEREIGN --- */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-luxury-black">
+        {/* Background Atmosphere */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.05),transparent_70%)]" />
           <motion.div 
             animate={{ 
-              opacity: [0.05, 0.15, 0.05] 
+              scale: [1, 1.05, 1],
+              opacity: [0.3, 0.4, 0.3]
             }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.1),transparent_50%)]" 
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534422298391-e4f8c170db06?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-30 grayscale contrast-125" 
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black via-luxury-black/60 to-luxury-black" />
         </div>
 
-        <div className="container mx-auto px-6 lg:px-12 relative z-20">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Column: Refined Content */}
-            <div className="lg:col-span-7 xl:col-span-6">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="space-y-2 mb-8">
-                  <span className="text-gold font-bold tracking-[0.4em] text-[10px] uppercase block">
-                    The Culinary Landmark
-                  </span>
-                </div>
-                
-                <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-medium leading-[1] tracking-tight mb-8">
-                  <span className="text-white block">CHINATOWN</span>
-                  <span className="text-gold italic block">& JADE CAFÉ</span>
-                </h1>
-
-                {/* Refined Lotus Divider */}
-                <div className="flex items-center gap-6 mb-10">
-                  <div className="w-10 h-10 flex items-center justify-center opacity-80">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6 text-gold fill-none stroke-current stroke-[1.2]">
-                      <path d="M12 21C12 21 16 18 16 14C16 12 14 11 12 11C10 11 8 12 8 14C8 18 12 21 12 21Z" />
-                      <path d="M12 21C12 21 8 18 8 14C8 12 9 11 10 11" />
-                      <path d="M12 21C12 21 16 18 16 14C16 12 15 11 14 11" />
-                      <path d="M12 11V3" />
-                    </svg>
-                  </div>
-                  <div className="h-[1px] flex-grow bg-gold/10 max-w-[150px]" />
-                </div>
-
-                <p className="text-white/50 text-base md:text-lg max-w-lg leading-relaxed mb-12 font-light">
-                  An immersive sanctuary where authentic Asian heritage meets modern luxury hospitality in the heart of Multan.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center gap-5">
-                  <Link href="/menu" className="w-full sm:w-auto">
-                    <motion.button 
-                      whileHover={{ scale: 1.02, backgroundColor: "#E5C158" }}
-                      whileTap={{ scale: 0.98 }}
-                      className="bg-gold text-black px-10 py-4 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-2 w-full"
-                    >
-                      Explore Menu <ArrowRight size={14} />
-                    </motion.button>
-                  </Link>
-
-                  <Link href="/reservations" className="w-full sm:w-auto">
-                    <motion.button 
-                      whileHover={{ scale: 1.02, borderColor: "#D4AF37", color: "#D4AF37" }}
-                      whileTap={{ scale: 0.98 }}
-                      className="px-10 py-4 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/10 transition-all w-full"
-                    >
-                      Book a Table
-                    </motion.button>
-                  </Link>
-                </div>
-              </motion.div>
-            </div>            {/* Right Column: Immersive Visual Pillar */}
-            <div className="lg:col-span-5 xl:col-span-6 relative hidden lg:flex items-center justify-center">
-              <motion.div 
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-full h-full max-h-[800px] flex items-center justify-center"
-              >
-                {/* Immersive Image with Organic Fade */}
-                <div className="relative w-full aspect-square md:aspect-[4/5] lg:aspect-auto lg:h-[90vh]">
-                  <Image 
-                    src="/images/hero/luxury_dish.png"
-                    alt="Authentic Asian Fusion"
-                    fill
-                    className="object-contain object-right lg:object-center scale-110"
-                    priority
-                  />
-                  {/* Organic Fade Masks */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-transparent to-transparent lg:w-1/2" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent h-1/4 bottom-0" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-transparent h-1/4 top-0" />
-                </div>
-
-                {/* Subtle Ambient Glow behind the dish */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
-              </motion.div>
+        <div className="container mx-auto px-6 relative z-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-4 mb-8">
+              <div className="h-px w-8 md:w-16 bg-gold/50" />
+              <span className="text-gold font-bold tracking-[0.8em] text-[10px] md:text-[12px] uppercase block">
+                Multan's Premier Dining Landmark
+              </span>
+              <div className="h-px w-8 md:w-16 bg-gold/50" />
             </div>
-          </div>
+            
+            <h1 className="font-heading text-6xl md:text-8xl lg:text-[10rem] font-medium leading-[0.9] tracking-tighter mb-12">
+              <span className="text-white block overflow-hidden">
+                <motion.span 
+                  initial={{ y: "100%" }} 
+                  animate={{ y: 0 }} 
+                  transition={{ duration: 1, delay: 0.2 }}
+                  className="block"
+                >
+                  CHINATOWN
+                </motion.span>
+              </span>
+              <span className="text-gradient-gold italic block overflow-hidden">
+                <motion.span 
+                  initial={{ y: "100%" }} 
+                  animate={{ y: 0 }} 
+                  transition={{ duration: 1, delay: 0.4 }}
+                  className="block"
+                >
+                  & JADE CAFÉ
+                </motion.span>
+              </span>
+            </h1>
+
+            <p className="text-white/60 text-base md:text-xl max-w-2xl mx-auto leading-relaxed mb-16 font-light tracking-wide">
+              Where the ancestral wisdom of Asian flavors meets the pinnacle of modern luxury hospitality. A sanctuary for the senses.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+              <Link href="/menu">
+                <motion.button 
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(212,175,55,0.3)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gold text-black px-12 py-5 rounded-full font-bold text-[11px] tracking-[0.3em] uppercase transition-all shadow-2xl shadow-gold/20"
+                >
+                  Explore Menu
+                </motion.button>
+              </Link>
+
+              <Link href="/reservations">
+                <motion.button 
+                  whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.05)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-12 py-5 rounded-full font-bold text-[11px] tracking-[0.3em] uppercase text-white border border-white/20 transition-all backdrop-blur-md"
+                >
+                  Reservations
+                </motion.button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Scroll Indicator - Minimal */}
+        {/* Hero Decorative Elements */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-luxury-black to-transparent z-10" />
         <motion.div 
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-30"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
         >
-          <div className="w-[1px] h-12 bg-gradient-to-b from-gold/50 to-transparent" />
+          <span className="text-[9px] text-gold/40 tracking-[0.4em] uppercase">Scroll to Discover</span>
+          <div className="w-px h-12 bg-gradient-to-b from-gold/50 to-transparent" />
         </motion.div>
       </section>
 
-      {/* --- HERO FOOTER: THE FOUR PILLARS --- */}
-      <div className="relative z-30 -mt-20 lg:-mt-24 pb-12">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="glass-dark border border-white/5 rounded-3xl p-8 lg:p-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      {/* --- THE FOUR PILLARS: REFINED --- */}
+      <section className="relative z-30 py-32 bg-luxury-black border-b border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8">
             {[
               { 
-                title: "Authentic Asian Cuisine", 
-                desc: "Traditional flavors crafted with passion.",
-                icon: (
-                  <svg viewBox="0 0 24 24" className="w-8 h-8 text-gold fill-none stroke-current stroke-[1.5]">
-                    <path d="M12 22C12 22 17 18 17 13C17 11.5 16 10.5 15 10.5C14 10.5 13 11.5 12 13C11 11.5 10 10.5 9 10.5C8 10.5 7 11.5 7 13C7 18 12 22 12 22Z" />
-                    <path d="M12 22C12 22 7 18 7 13C7 11.5 8 10.5 9 10.5C10 10.5 11 11.5 12 13" />
-                  </svg>
-                )
+                title: "Authentic Asian", 
+                desc: "Centuries-old recipes brought to life with premium local and imported ingredients.",
+                icon: <Utensils className="text-gold" size={24} strokeWidth={1} />
               },
               { 
-                title: "Premium Experience", 
-                desc: "Elegant ambiance & impeccable service.",
-                icon: <Utensils className="text-gold" size={32} strokeWidth={1.5} />
+                title: "Immersive Ambiance", 
+                desc: "A carefully curated space where every shadow and light is designed for intimacy.",
+                icon: <Star className="text-gold" size={24} strokeWidth={1} />
               },
               { 
-                title: "Heart of Multan", 
-                desc: "A culinary destination you'll love to revisit.",
-                icon: <MapPin className="text-gold" size={32} strokeWidth={1.5} />
+                title: "Exquisite Service", 
+                desc: "Hospitality that anticipates your needs, providing a seamless and refined experience.",
+                icon: <Users className="text-gold" size={24} strokeWidth={1} />
               },
               { 
-                title: "Easy Reservations", 
-                desc: "Book your table in just a few clicks.",
-                icon: <Calendar className="text-gold" size={32} strokeWidth={1.5} />
+                title: "Multan's Legacy", 
+                desc: "A destination that has defined the fine dining landscape of the city for over 15 years.",
+                icon: <MapPin className="text-gold" size={24} strokeWidth={1} />
               },
             ].map((pillar, i) => (
               <motion.div 
                 key={pillar.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-6 group"
+                className="flex flex-col items-center text-center gap-6 group"
               >
-                <div className="flex-shrink-0 p-4 rounded-xl bg-gold/5 border border-gold/10 group-hover:border-gold/30 transition-all">
+                <div className="w-16 h-16 rounded-full border border-gold/20 flex items-center justify-center group-hover:border-gold/50 group-hover:bg-gold/5 transition-all duration-700">
                   {pillar.icon}
                 </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gold mb-2">{pillar.title}</h4>
-                  <p className="text-xs text-white/40 leading-relaxed font-light">{pillar.desc}</p>
+                <div className="space-y-4">
+                  <h4 className="text-[11px] font-bold uppercase tracking-[0.4em] text-gold">{pillar.title}</h4>
+                  <p className="text-xs text-white/40 leading-relaxed font-light px-4">{pillar.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* --- THE MASTERPIECES: MENU HIGHLIGHTS --- */}
-      <section className="py-40 bg-luxury-matte relative border-y border-white/5">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-32">
+      {/* --- THE SIGNATURE GALLERY: HIGH-FASHION MENU CARDS --- */}
+      <section className="py-48 bg-luxury-matte relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-32">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-gold font-bold tracking-[0.6em] text-[10px] uppercase mb-6 block">Curated Selection</span>
-              <h2 className="font-heading text-6xl md:text-8xl text-whitesmoke leading-tight italic">Signature <br /><span className="text-gradient-gold">Creations</span></h2>
+              <span className="text-gold font-bold tracking-[0.8em] text-[11px] uppercase mb-6 block">Culinary Artistry</span>
+              <h2 className="font-heading text-6xl md:text-8xl text-whitesmoke mb-8 italic">Signature Creations</h2>
+              <div className="h-px w-32 bg-gold/30 mx-auto" />
             </motion.div>
-            <Link href="/menu" className="group">
-              <PremiumButton variant="outline" className="px-12 py-6">View Complete Menu</PremiumButton>
-            </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {signatureDishes.map((dish, i) => (
               <motion.div
                 key={dish.id}
@@ -275,96 +236,146 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="group relative h-[650px] rounded-[3rem] overflow-hidden border border-white/10"
+                className="group flex flex-col"
               >
-                <Image 
-                  src={dish.image} 
-                  alt={dish.name} 
-                  fill 
-                  className="object-cover transition-transform duration-[2s] group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-luxury-black/30 to-transparent opacity-95 group-hover:opacity-100 transition-all" />
-                
-                <div className="absolute inset-0 p-12 flex flex-col justify-end">
-                  <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                    {dish.category}
-                  </span>
-                  <h3 className="text-4xl font-heading text-whitesmoke mb-6 italic leading-tight">{dish.name}</h3>
-                  <div className="h-px w-0 group-hover:w-full bg-gold/40 transition-all duration-1000 mb-8" />
-                  <p className="text-whitesmoke/40 text-sm leading-relaxed mb-10 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 line-clamp-2">
+                {/* Modern Framed Image */}
+                <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden mb-8 border border-white/5 shadow-2xl group-hover:border-gold/20 transition-all duration-1000">
+                  <Image 
+                    src={dish.image} 
+                    alt={dish.name} 
+                    fill 
+                    className="object-cover transition-transform duration-[2.5s] group-hover:scale-115 grayscale-[0.2] group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
+                  
+                  {/* Category Overlay */}
+                  <div className="absolute top-8 left-8">
+                    <span className="text-[8px] font-bold tracking-[0.4em] uppercase text-gold py-2 px-4 rounded-full glass-dark border-white/10">
+                      {dish.category}
+                    </span>
+                  </div>
+
+                  {/* Price Tag (Modern) */}
+                  <div className="absolute bottom-8 right-8">
+                    <div className="text-whitesmoke bg-luxury-black/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
+                      <span className="font-heading text-xl italic">{dish.price}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Minimal Content */}
+                <div className="px-4 text-center">
+                  <h3 className="text-3xl font-heading text-whitesmoke mb-3 italic tracking-tight group-hover:text-gold transition-colors duration-500">
+                    {dish.name}
+                  </h3>
+                  <p className="text-whitesmoke/30 text-[13px] leading-relaxed font-light line-clamp-2 px-4 group-hover:text-whitesmoke/50 transition-colors duration-500">
                     {dish.desc}
                   </p>
-                  <div className="flex justify-between items-center transform translate-y-8 group-hover:translate-y-0 transition-all duration-700">
-                    <span className="text-3xl font-heading text-whitesmoke italic">{dish.price}</span>
-                    <motion.div 
-                      whileHover={{ scale: 1.1, backgroundColor: "#D4AF37", color: "#080808" }}
-                      className="w-14 h-14 rounded-full border border-gold/40 flex items-center justify-center text-gold transition-all"
-                    >
-                      <ArrowRight size={20} />
-                    </motion.div>
-                  </div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className="mt-8 overflow-hidden h-10"
+                  >
+                    <Link href="/menu" className="inline-flex items-center gap-3 text-gold text-[10px] font-bold tracking-[0.4em] uppercase group/link">
+                      <span>Order Now</span>
+                      <div className="w-8 h-px bg-gold/30 group-hover/link:w-16 transition-all duration-500" />
+                      <ArrowRight size={14} className="group-hover/link:translate-x-2 transition-transform duration-500" />
+                    </Link>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          <div className="mt-32 text-center">
+            <Link href="/menu">
+              <PremiumButton variant="outline" className="px-16 py-6 rounded-full border-white/10 hover:border-gold/50">
+                View Full Menu <ChevronRight size={18} className="ml-2" />
+              </PremiumButton>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* --- THE LEGACY: STORYTELLING --- */}
-      <section className="py-48 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-32 items-center">
+      {/* --- THE LEGACY: STAGGERED EDITORIAL LAYOUT --- */}
+      <section className="py-60 relative overflow-hidden bg-luxury-black">
+        {/* Large Decorative Text */}
+        <div className="absolute top-1/4 -left-24 text-[20rem] font-heading font-bold text-white/[0.02] select-none pointer-events-none whitespace-nowrap">
+          HERITAGE
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-32 items-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative order-2 lg:order-1"
+              className="lg:w-1/2 relative"
             >
-              <div className="aspect-[4/5] rounded-[4rem] overflow-hidden border border-white/10 shadow-4xl">
+              <div className="relative z-10 aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] border border-white/5">
                 <Image 
                   src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop" 
                   alt="Fine Dining Heritage" 
                   fill 
-                  className="object-cover"
+                  className="object-cover contrast-[1.1] brightness-[0.8]"
                 />
               </div>
+              
+              {/* Floating Stat Card */}
               <motion.div 
-                whileInView={{ rotate: [-2, 2, -2] }}
-                transition={{ duration: 10, repeat: Infinity }}
-                className="absolute -top-12 -left-12 glass-gold p-16 rounded-[4rem] text-center shadow-2xl border-gold/30"
+                whileInView={{ y: [-10, 10, -10] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-16 -right-16 z-20 glass-dark p-12 rounded-[3.5rem] border border-gold/20 shadow-3xl backdrop-blur-3xl text-center min-w-[200px]"
               >
-                <span className="block text-6xl font-heading font-bold text-gold mb-2">15</span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-whitesmoke">Years of Legacy</span>
+                <span className="block text-7xl font-heading font-bold text-gold mb-2">15</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/60 leading-tight">Years of <br />Culinary Mastery</span>
               </motion.div>
+
+              {/* Decorative Frame Behind */}
+              <div className="absolute -top-12 -left-12 w-full h-full border border-gold/10 rounded-[4rem] -z-10" />
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="order-1 lg:order-2"
+              className="lg:w-1/2 space-y-12"
             >
-              <span className="text-gold font-bold tracking-[0.5em] text-[10px] uppercase mb-8 block">The Narrative</span>
-              <h2 className="font-heading text-6xl md:text-8xl text-whitesmoke mb-12 leading-[1.1]">
-                Heritage In <br />
-                <span className="text-gradient-gold italic">Every Detail</span>
-              </h2>
+              <div>
+                <span className="text-gold font-bold tracking-[0.8em] text-[11px] uppercase mb-8 block">Our Narrative</span>
+                <h2 className="font-heading text-6xl md:text-8xl text-whitesmoke mb-12 leading-[1.1]">
+                  Excellence in <br />
+                  <span className="text-gradient-gold italic">Every Detail</span>
+                </h2>
+              </div>
+              
               <div className="space-y-10">
                 <p className="text-whitesmoke/50 text-xl leading-relaxed font-light">
-                  Born from a passion for authentic Asian culinary arts, ChinaTown & Jade Café has evolved into Multan's most prestigious dining destination.
+                  From our beginnings as a passionate kitchen experiment to becoming Multan's most revered dining institution, our journey has been guided by one principle: uncompromising quality.
                 </p>
-                <p className="text-whitesmoke/40 text-lg leading-relaxed font-light italic border-l-2 border-gold/30 pl-8">
-                  "We don't just serve dishes; we curate moments that transcend the ordinary. Our kitchen is a laboratory of tradition, and our floor is a stage for hospitality."
-                </p>
-              </div>
-              <div className="mt-16 flex items-center gap-12">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-heading text-whitesmoke mb-1 italic">Michelin</span>
-                  <span className="text-[8px] font-bold tracking-[0.4em] text-gold uppercase">Standard</span>
+                
+                <div className="p-12 border-l-2 border-gold/20 bg-white/[0.01] rounded-r-[3rem] relative">
+                  <p className="text-whitesmoke/40 text-lg italic leading-relaxed font-light">
+                    "Luxury is not about excess, it's about the precision of experience. We curate every flavor, every texture, and every interaction to create moments that linger."
+                  </p>
+                  <span className="absolute top-6 right-8 text-gold/20 font-heading text-6xl italic">"</span>
                 </div>
-                <div className="w-px h-12 bg-white/10" />
+              </div>
+
+              <div className="pt-12 flex items-center gap-16">
+                <div className="flex flex-col">
+                  <span className="text-4xl font-heading text-whitesmoke italic">World-Class</span>
+                  <span className="text-[9px] font-bold tracking-[0.4em] text-gold uppercase">Standard</span>
+                </div>
+                <div className="w-px h-16 bg-white/10" />
                 <Link href="/about">
-                  <PremiumButton variant="outline" className="px-12 py-5">Our Journey</PremiumButton>
+                  <motion.button 
+                    whileHover={{ scale: 1.05, borderColor: "#D4AF37" }}
+                    className="px-16 py-6 border border-white/20 rounded-full font-bold text-[10px] tracking-[0.4em] uppercase text-whitesmoke transition-all"
+                  >
+                    Our Story
+                  </motion.button>
                 </Link>
               </div>
             </motion.div>
@@ -372,39 +383,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- GUEST VOICES: THE INNER CIRCLE --- */}
-      <section className="py-48 bg-luxury-matte relative border-t border-white/5">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-32">
-            <span className="text-gold font-bold tracking-[0.6em] text-[10px] uppercase mb-8 block">Kind Words</span>
-            <h2 className="font-heading text-5xl md:text-8xl text-whitesmoke italic">The Guest Journal</h2>
+      {/* --- GUEST VOICES: THE JOURNAL --- */}
+      <section className="py-48 bg-luxury-matte relative border-y border-white/5">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-32 gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-gold font-bold tracking-[0.8em] text-[11px] uppercase mb-6 block">Testimonials</span>
+              <h2 className="font-heading text-6xl md:text-8xl text-whitesmoke italic">The Guest Journal</h2>
+            </motion.div>
+            <div className="flex gap-4">
+              <button className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-gold/50 hover:text-gold transition-all duration-500">
+                <ChevronLeft size={24} />
+              </button>
+              <button className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-gold/50 hover:text-gold transition-all duration-500">
+                <ChevronRight size={24} />
+              </button>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {reviews.map((review, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-dark p-12 rounded-[3rem] border-gold/5 flex flex-col justify-between hover:border-gold/20 transition-all duration-700"
+                className="glass-dark p-12 rounded-[3.5rem] border border-white/5 flex flex-col justify-between hover:bg-white/[0.02] transition-all duration-700 shadow-xl group"
               >
                 <div>
                   <div className="flex gap-1.5 text-gold mb-10">
-                    {[...Array(review.rating)].map((_, j) => <Star key={j} size={14} fill="currentColor" className="shadow-gold/20" />)}
+                    {[...Array(5)].map((_, j) => (
+                      <Star 
+                        key={j} 
+                        size={12} 
+                        fill={j < review.rating ? "currentColor" : "none"} 
+                        className={cn(j < review.rating ? "text-gold" : "text-white/10")} 
+                      />
+                    ))}
                   </div>
                   <p className="text-xl italic font-light text-whitesmoke/70 leading-relaxed mb-16">
                     "{review.text}"
                   </p>
                 </div>
-                <div className="flex items-center gap-6">
-                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold/20 to-gold/5 border border-gold/20 flex items-center justify-center font-bold text-sm text-gold">
+                <div className="flex items-center gap-5 border-t border-white/5 pt-8">
+                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 border border-gold/10 flex items-center justify-center font-bold text-sm text-gold group-hover:scale-110 transition-all duration-500">
                       {review.name.charAt(0)}
                    </div>
                    <div className="flex flex-col">
-                    <span className="font-bold tracking-[0.2em] text-[10px] uppercase text-whitesmoke">{review.name}</span>
-                    <span className="text-[8px] tracking-[0.3em] text-gold uppercase mt-1">Verified Guest</span>
+                    <span className="font-bold tracking-[0.2em] text-[11px] uppercase text-whitesmoke">{review.name}</span>
+                    <span className="text-[9px] tracking-[0.3em] text-gold uppercase mt-1">Verified Guest</span>
                    </div>
                 </div>
               </motion.div>
@@ -413,28 +445,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FINAL CTA: THE INNER CIRCLE --- */}
-      <section className="py-48 relative overflow-hidden">
-        <div className="absolute inset-0 radial-glow" />
+      {/* --- FINAL CALL: THE INNER CIRCLE --- */}
+      <section className="py-60 relative overflow-hidden bg-luxury-black">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05),transparent_70%)]" />
+        </div>
+
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <h2 className="font-heading text-6xl md:text-9xl text-whitesmoke mb-16 italic">Join the Inner Circle</h2>
-            <p className="text-whitesmoke/40 text-lg mb-20 tracking-[0.4em] uppercase text-[11px] leading-loose max-w-2xl mx-auto">
-              Subscribe to receive exclusive invitations to our private tastings and seasonal menu unveils.
+            <span className="text-gold font-bold tracking-[1em] text-[11px] uppercase mb-10 block">Invitations Only</span>
+            <h2 className="font-heading text-6xl md:text-[10rem] text-whitesmoke leading-tight italic tracking-tighter mb-16">
+              Join the <br />
+              <span className="text-gradient-gold">Inner Circle</span>
+            </h2>
+            <p className="text-white/40 text-[11px] md:text-[13px] mb-20 tracking-[0.4em] uppercase leading-loose max-w-2xl mx-auto font-light">
+              Experience the privilege of early access to private tastings and curated menu reveals.
             </p>
             
-            <form className="flex flex-col md:flex-row gap-6 justify-center max-w-3xl mx-auto">
+            <form className="flex flex-col md:flex-row gap-0 justify-center max-w-4xl mx-auto rounded-full overflow-hidden border border-white/10 group focus-within:border-gold/30 transition-all duration-700">
               <input 
                 type="email" 
                 placeholder="YOUR EMAIL ADDRESS"
-                className="bg-transparent border-b border-white/20 px-4 py-8 rounded-none text-whitesmoke text-xs tracking-[0.4em] focus:outline-none focus:border-gold transition-all w-full uppercase"
+                className="bg-white/[0.03] px-12 py-8 text-whitesmoke text-[11px] tracking-[0.4em] focus:outline-none flex-grow uppercase font-medium"
+                required
               />
-              <button className="bg-gold text-luxury-black px-16 py-8 rounded-full font-bold text-[11px] tracking-[0.4em] uppercase hover:bg-whitesmoke transition-all shadow-2xl">
+              <button className="bg-gold text-luxury-black px-16 py-8 font-bold text-[11px] tracking-[0.5em] uppercase hover:bg-whitesmoke transition-all duration-500">
                 Subscribe
               </button>
             </form>
