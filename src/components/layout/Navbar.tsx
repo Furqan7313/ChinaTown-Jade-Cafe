@@ -15,7 +15,7 @@ const navLinksLeft = [
 
 const navLinksRight = [
   { name: "Reservations", href: "/reservations" },
-  { name: "About", href: "/about" },
+  { name: "Reviews", href: "/#reviews" },
   { name: "Contact", href: "/contact" },
 ];
 
