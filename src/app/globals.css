@@ -1,15 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-luxury-black: #111111;
-  --color-luxury-matte: #1A1A1A;
-  --color-jade: #0F6B5B;
-  --color-jade-light: #1A8B77;
-  --color-gold: #C8A96B;
-  --color-gold-light: #E5C158;
-  --color-whitesmoke: #F5F3EE;
-  --color-text-dim: #B8B8B8;
-  --color-crimson: #B3001B;
+  --color-luxury-black: #050505;
+  --color-luxury-matte: #0A0A0A;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F5E6BE;
+  --color-gold-dark: #8B732A;
+  --color-whitesmoke: #F5F5F5;
+  --color-text-dim: #888888;
+  --color-crimson: #8B0000;
   
   --font-heading: var(--font-playfair);
   --font-body: var(--font-inter);
@@ -29,10 +28,16 @@
 
   @keyframes float {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
   }
 
-  --animate-float: float 6s ease-in-out infinite;
+  --animate-float: float 8s ease-in-out infinite;
+
+  @keyframes pulse-gold {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+  }
+  --animate-pulse-gold: pulse-gold 4s ease-in-out infinite;
 }
 
 @layer base {
@@ -48,66 +53,37 @@
     font-family: var(--font-body), sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading), serif;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
-  .border-text {
-    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
-    text-shadow: none;
-  }
-
   .text-gradient-gold {
-    background: linear-gradient(135deg, #E5C158 0%, #C8A96B 50%, #8B732A 100%);
+    background: linear-gradient(135deg, #F5E6BE 0%, #D4AF37 50%, #8B732A 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .text-gradient-jade {
-    background: linear-gradient(135deg, #1A8B77 0%, #0F6B5B 50%, #084036 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .text-glow-gold {
-    text-shadow: 0 0 20px rgba(200, 169, 107, 0.3), 0 0 40px rgba(200, 169, 107, 0.1);
-  }
-
-  .text-gradient-crimson {
-    background: linear-gradient(to right, #B3001B, #D4AF37);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #F5E6BE 50%, #8B732A 100%);
   }
 
   .bg-luxury-matte {
-    background: radial-gradient(circle at center, #1a1a1a 0%, #080808 100%);
+    background: radial-gradient(circle at center, #0F0F0F 0%, #050505 100%);
   }
 
   .glass-dark {
-    background: rgba(17, 17, 17, 0.8);
-    backdrop-filter: blur(25px) saturate(160%);
-    -webkit-backdrop-filter: blur(25px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-  }
-
-  .glass-jade {
-    background: rgba(15, 107, 91, 0.05);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(15, 107, 91, 0.2);
-  }
-
-  .jade-glow {
-    box-shadow: 0 0 40px rgba(15, 107, 91, 0.15);
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(212, 175, 55, 0.1);
   }
 
   .cinematic-noise {
@@ -115,25 +91,17 @@
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.04;
+    opacity: 0.03;
     background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
     mix-blend-mode: overlay;
   }
 
-  .radial-glow {
-    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-  }
-
-  .vertical-text {
-    writing-mode: vertical-rl;
-  }
-
-  .reveal-text {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-
   .gold-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.4), transparent);
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.3), transparent);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
   }
 }
